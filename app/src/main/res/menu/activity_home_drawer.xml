@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_add_location_black_24dp"
+            android:title="เพิ่มสถานที่" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_group_add_black_24dp"
+            android:title="เพิ่มการติดตาม" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_speaker_phone_black_24dp"
+            android:title="การแชร์ตำแหน่ง" />
+
+    </group>
+
+    <item android:title="การแจ้งเตือน">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="การแบ่งปันสถานที่" />
+            <item
+                android:id="@+id/nav_follow"
+                android:icon="@drawable/ic_menu_send"
+                android:title="การติดตาม" />
+        </menu>
+    </item>
+
+        <item android:titleCondensed="ทัวไป"
+            android:title="การตั้งค่าและการช่วยเหลือ">
+        <menu>
+            <item
+                android:id="@+id/nav_config"
+                android:icon="@drawable/ic_setting_light"
+                android:title="การตั้งค่า" />
+            <item
+                android:id="@+id/nav_QA"
+                android:icon="@drawable/ic_help_black_24dp"
+                android:title="คำถามที่พบบ่อย" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_power_settings_new_black_24dp"
+                android:title="ออกจากระบบ" />
+        </menu>
+        </item>
+
+
+
+</menu>

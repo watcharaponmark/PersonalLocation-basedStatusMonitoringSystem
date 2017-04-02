@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Track&amp;ShareLocations</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <string name="loding">loding</string>
+    <string name="btn_logout_from_google">Logout from Google</string>
+    <string name="lbl_you_are_at">YOU ARE AT</string>
+    <string name="btn_get_location">GET MY LOCATION</string>
+    <string name="btn_start_location_updates">START LOCATION UPDATES</string>
+    <string name="btn_stop_location_updates">STOP LOCATION UPDATES</string>
+    <string name="Map_api_key">AIzaSyAMFNqzykZa7u38Aad73GEbTLKtgD0Vebo</string>
+    <string name="facebook_app_id">603838439822823</string>
+</resources>

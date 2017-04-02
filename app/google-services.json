@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "434550361523",
+    "project_id": "tracksharelocations"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434550361523:android:80b8894f8443a146",
+        "android_client_info": {
+          "package_name": "biz.markgo.senior_project.tracksharelocations"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "434550361523-jgaqlpidqecjg7pa9i9e245n3uacifg2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "biz.markgo.senior_project.tracksharelocations",
+            "certificate_hash": "4b4af9d3ec4c3dfe9195cccfd0e97bcc04e908b5"
+          }
+        },
+        {
+          "client_id": "434550361523-vh918cj4l5ep64mrgrsoe7pa5smou51r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGw9nYo0l2CezYV4K6333ZEIRdQEjluIY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
