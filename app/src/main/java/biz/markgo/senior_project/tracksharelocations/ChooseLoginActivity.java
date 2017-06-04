@@ -19,11 +19,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
+import com.facebook.GraphRequestAsyncTask;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
@@ -55,53 +57,101 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
 
     private static final String TAG = ChooseLoginActivity.class.getSimpleName();
 
-    private LoginButton loginButton;
-    private TextView btnLogin;
-    private ProgressDialog progressDialog;
-    User user;
 
+    //ข้อมูลผู้ใช้
+    private String statusLogin = "";
+    private String personName = "";
+    private String personPhotoUrl = "";
+    private String email = "";
+    private String account_id = "";
+    private String email_facebook="";
+    User user=new User();
+
+    //facebook
+    private CallbackManager callbackManager;
+    private AccessTokenTracker accessTokenTracker;
+    private ProfileTracker profileTracker;
+
+    // google
     private static final int RC_SIGN_IN = 007;
     private GoogleApiClient mGoogleApiClient;
     private ProgressDialog mProgressDialog;
-
-    //ข้อมูลผู้ใช้ google
-    String personName = "";
-    String personPhotoUrl = "";
-    String email = "";
-    String account_id = "";
-
-    Context ctx = this;
-
-    CallbackManager callbackManager;
-   // ProfileTracker profileTracker;
-    private ProfilePictureView profilePicture;
-    private Button postLinkBotton;
-    private Button postPictureButton;
-
-    private String email_facebook;
+    GraphRequest graphRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         FacebookSdk.sdkInitialize(this.getApplicationContext());
-        callbackManager = CallbackManager.Factory.create();
-
-        //login_facebook();
-
         setContentView(R.layout.activity_choose_login);
 
-        Button bt_loginFacebook = (Button) findViewById(R.id.bt_loginFacebook);
+
         Button bt_loginGoogle = (Button) findViewById(R.id.bt_loginGoogle);
         TextView tv_loginNo = (TextView) findViewById(R.id.tv_loginNo);
+        LoginButton bt_loginFacebook = (LoginButton) findViewById(R.id.bt_loginFacebook);
 
-        //เมื่อคลิ๊กปุ่มเข้าสู่ระบบผ่าน facebook
-        bt_loginFacebook.setOnClickListener(new View.OnClickListener() {
+
+        // facebook
+        callbackManager = CallbackManager.Factory.create();
+        accessTokenTracker = new AccessTokenTracker() {
             @Override
-            public void onClick(View v) {
-                login_facebook();
+            protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
             }
-        });
+        };
+        profileTracker = new ProfileTracker() {
+            @Override
+            protected void onCurrentProfileChanged(Profile oldProfile, Profile newProfile) {
+                nextActivity(newProfile);
+            }
+        };
+        accessTokenTracker.startTracking();
+        profileTracker.startTracking();
+
+        FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+                //Json Object Data facebook เพื่อเอา email ผู้ใช้
+                AccessToken accessToken = loginResult.getAccessToken();
+                 graphRequest=GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+
+                                if (response.getError() != null) {
+                                    Log.e(TAG, "Error in Response " + response);
+                                } else {
+
+                                    email_facebook = object.optString("email");
+                                    user.email_facebook = object.optString("email");
+                                    Log.e(TAG, "Json Object Data " + object + " Email id " +  email_facebook);
+                                }
+
+                            }
+                    });
+                Bundle bundle=new Bundle();
+                bundle.putString("fields","id,email,name");
+                graphRequest.setParameters(bundle);
+                graphRequest.executeAsync();
+
+                //Log.i(TAG, user.email_facebook );
+                Profile profile = Profile.getCurrentProfile();
+                nextActivity(profile);
+                Toast.makeText(getApplicationContext(), "เข้าสู่ระบบ...", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel() {
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+            }
+        };
+        bt_loginFacebook.setReadPermissions("email", "user_likes", "user_friends");
+        bt_loginFacebook.registerCallback(callbackManager, callback);
+
+
+
 
         // google+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -122,6 +172,7 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
             }
         });
 
+
         //เมื่อคลิ๊กปุ่มข้าม (ไม่ login)
         tv_loginNo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,22 +184,72 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
         });
 
 
-       /* profileTracker = new ProfileTracker() {
-            @Override
-            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
-                updateUI();
-            }
-        };*/
     }
 
+
+    //facebook
+    //ส่วนโปรแกรม facebook login
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Facebook login
+
+        Profile profile = Profile.getCurrentProfile();
+        nextActivity(profile);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    protected void onStop() {
+        super.onStop();
+        //Facebook login
+        accessTokenTracker.stopTracking();
+        profileTracker.stopTracking();
+    }
+
+    private void nextActivity(Profile profile) {
+        if (profile != null) {
+            statusLogin = "facebook";
+            account_id = profile.getId();
+            personName = profile.getName();
+            personPhotoUrl = profile.getProfilePictureUri(200, 200).toString();
+
+            //ส่งค่าไปคลาส BackGround เพื่อเช็คว่ามีสมาชิกใน database server ยัง
+            BackGround b = new BackGround();
+            b.execute(account_id, email_facebook );
+        }
+    }
+
+    //
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
+        }
+        //facebook
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    //google
     //ส่วนโปรแกรม google login
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
-            // Signed in successfully, show authenticated UI.
+            //Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            //Log.e(TAG, "display name: " + acct.getDisplayName());
-            // Log.i(TAG,acct.toString());
+            Log.e(TAG, "display name: " + acct.getDisplayName());
+            Log.i(TAG,acct.toString());
+            statusLogin = "google";
             account_id = acct.getId().toString();
             email = acct.getEmail().toString();
             personName = acct.getDisplayName().toString();
@@ -161,19 +262,6 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
         } else {
         }
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
-        }
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-
 
     @Override
     public void onStart() {
@@ -227,72 +315,22 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
             mProgressDialog.hide();
         }
     }
+    //
 
-    private void login_facebook() {
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-
-
-                //updateUI();
-            }
-            @Override
-            public void onCancel() {
-                //updateUI();
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                updateUI();
-            }
-        });
-
-    }
-    private void updateUI() {
-        boolean loggedIn = AccessToken.getCurrentAccessToken() != null;
-        Profile profile = Profile.getCurrentProfile();
-        if (loggedIn && (profile != null)) {
-
-            Intent intenHomeActivity = new Intent(ChooseLoginActivity.this, HomeActivity.class);
-            intenHomeActivity.putExtra("statusLogin", "facebook");
-            intenHomeActivity.putExtra("personName", profile.getName());
-            //intenHomeActivity.putExtra("personPhotoUrl", personPhotoUrl);
-            intenHomeActivity.putExtra("email",email_facebook);
-            intenHomeActivity.putExtra("account_id", profile.getId());
-            startActivity(intenHomeActivity);
-        } else {
-            // profilePicture.setProfileId(null);
-//            username.setText(null);
-//            postLinkBotton.setText(null);
-//            postLinkBotton.setEnabled(false);
-//            postPictureButton.setEnabled(false);
-        }
-    }
-
-  /*  @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //profileTracker.stopTracking();
-    }*/
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        updateUI();
-    }
 
     class BackGround extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... params) {
             String account_id = params[0];
-            String email = params[1];
+            String email_check = params[1];
             String data = "";
             int tmp;
 
             try {
+
                 URL url = new URL("http://senior-project.markgo.biz/member/member_status_check.php");
-                String urlParams = "account_id=" + account_id + "&email=" + email;
+                String urlParams = "account_id=" + account_id + "&email=" + email_check;
 
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setDoOutput(true);
@@ -329,23 +367,44 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
                 statusID = check_member.getString("statusID");
                 Log.i(TAG, statusID);
                 Log.i(TAG, account_id);
+                Log.i(TAG,"email_facebook : "+ email_facebook );
+                Log.i(TAG, " user.email_facebook :"+user.email_facebook );
                 Log.i(TAG, email);
                 if (statusID.equals("No")) {
                     Intent intenDetailRegisterActivity = new Intent(ChooseLoginActivity.this, DetailRegisterActivity.class);
-                    intenDetailRegisterActivity.putExtra("statusLogin", "google");
-                    intenDetailRegisterActivity.putExtra("personName", personName);
-                    intenDetailRegisterActivity.putExtra("personPhotoUrl", personPhotoUrl);
-                    intenDetailRegisterActivity.putExtra("email", email);
-                    intenDetailRegisterActivity.putExtra("account_id", account_id);
+
+                    if(statusLogin.equals("facebook")){
+                        intenDetailRegisterActivity.putExtra("statusLogin", statusLogin);
+                        intenDetailRegisterActivity.putExtra("personName", personName);
+                        intenDetailRegisterActivity.putExtra("personPhotoUrl", personPhotoUrl);
+                        intenDetailRegisterActivity.putExtra("email", email_facebook );
+                        intenDetailRegisterActivity.putExtra("account_id", account_id);
+                    }else if(statusLogin.equals("google")){
+                        intenDetailRegisterActivity.putExtra("statusLogin", statusLogin);
+                        intenDetailRegisterActivity.putExtra("personName", personName);
+                        intenDetailRegisterActivity.putExtra("personPhotoUrl", personPhotoUrl);
+                        intenDetailRegisterActivity.putExtra("email", email);
+                        intenDetailRegisterActivity.putExtra("account_id", account_id);
+                    }
+
                     startActivity(intenDetailRegisterActivity);
 
                 } else if (statusID.equals("Yes")) {
                     Intent intenHomeActivity = new Intent(ChooseLoginActivity.this, HomeActivity.class);
-                    intenHomeActivity.putExtra("statusLogin", "google");
-                    intenHomeActivity.putExtra("personName", personName);
-                    intenHomeActivity.putExtra("personPhotoUrl", personPhotoUrl);
-                    intenHomeActivity.putExtra("email", email);
-                    intenHomeActivity.putExtra("account_id", account_id);
+                    if(statusLogin.equals("facebook")){
+                        intenHomeActivity.putExtra("statusLogin", statusLogin);
+                        intenHomeActivity.putExtra("personName", personName);
+                        intenHomeActivity.putExtra("personPhotoUrl", personPhotoUrl);
+                        intenHomeActivity.putExtra("email",email_facebook );
+                        intenHomeActivity.putExtra("account_id", account_id);
+                    }else if(statusLogin.equals("google")){
+                        intenHomeActivity.putExtra("statusLogin", statusLogin);
+                        intenHomeActivity.putExtra("personName", personName);
+                        intenHomeActivity.putExtra("personPhotoUrl", personPhotoUrl);
+                        intenHomeActivity.putExtra("email", email);
+                        intenHomeActivity.putExtra("account_id", account_id);
+                    }
+
                     startActivity(intenHomeActivity);
                 }
 

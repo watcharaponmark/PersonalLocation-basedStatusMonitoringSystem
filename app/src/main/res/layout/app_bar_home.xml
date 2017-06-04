@@ -24,7 +24,7 @@
         android:background="?android:attr/colorAccent"
         app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
         app:titleTextColor="@android:color/white"
-        app:title="TrackandShare" />
+        app:title="หน้าแรก" />
 
 
 </android.support.design.widget.CoordinatorLayout>

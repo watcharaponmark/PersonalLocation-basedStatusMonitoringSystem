@@ -29,9 +29,11 @@
             app:srcCompat="@drawable/logo"
             android:id="@+id/im_logo"
             android:layout_height="230dp"
-            android:layout_weight="0.11" />
+            android:layout_weight="0.11"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp" />
 
-       <Button
+    <!--   <Button
             android:text="เข้าสู่ระบบด้วย Facebook"
             android:layout_width="match_parent"
             android:id="@+id/bt_loginFacebook"
@@ -43,15 +45,24 @@
             android:textStyle="normal|bold"
             android:layout_height="50dp"
             android:layout_weight="0.07"
-            android:layout_marginTop="60dp" />
+            android:layout_marginTop="60dp" />-->
+
+        <!--facebook:com_facebook_confirm_logout="false"
+           facebook:com_facebook_tooltip_mode="never_display"-->
 
         <com.facebook.login.widget.LoginButton
+            android:id="@+id/bt_loginFacebook"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            com_facebook_confirm_logout="false"
-            com_facebook_tooltip_mode="never_display"
-            android:layout_weight="0.14" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:text="เข้าสู่ระบบด้วย Facebook"
+            android:padding="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp" />
 
         <TextView
             android:text="หรือ"
@@ -64,6 +75,7 @@
             android:layout_marginBottom="10dp"
             android:textStyle="normal|bold" />
 
+
         <Button
             android:text="เข้าสู่ระบบด้วย Google+"
             android:layout_width="match_parent"
@@ -74,10 +86,10 @@
             android:layout_marginTop="5dp"
             android:textColor="#FFFFFA"
             android:padding="10dp"
-            android:layout_height="50dp"
             android:textStyle="normal|bold"
-            android:layout_weight="0.05" />
-
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_height="46dp" />
 
         <TextView
             android:text="ข้าม"

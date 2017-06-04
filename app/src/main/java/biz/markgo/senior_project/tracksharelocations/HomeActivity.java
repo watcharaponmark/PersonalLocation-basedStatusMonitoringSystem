@@ -17,7 +17,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -29,8 +31,13 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.ConfigFragment;
+import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.FollowNotiFragment;
 import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.NewPlaceFragment;
 import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.NewTrackingFragment;
+import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.QAFragment;
+import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.ShareNotiFragment;
+import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.ShareringFragment;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener , GoogleApiClient.OnConnectionFailedListener {
@@ -45,6 +52,7 @@ public class HomeActivity extends AppCompatActivity
     private User user;
     private ImageView profileImage;
     Bitmap bitmap;
+    String statusLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +78,7 @@ public class HomeActivity extends AppCompatActivity
 
         //login status
         final Intent intent = getIntent();
-        String statusLogin = intent.getStringExtra("statusLogin");
+        statusLogin = intent.getStringExtra("statusLogin");
 
         //login google
         final String personName = intent.getStringExtra("personName");
@@ -93,13 +101,14 @@ public class HomeActivity extends AppCompatActivity
         tv_email_nav.setText(email);
 
         }else if(statusLogin.equals("facebook")) {
-
+           //"http://graph.facebook.com/"+account_id+"/picture?type=large" ลิ้งภาพ
             Glide.with(getApplicationContext())
-                    .load("http://graph.facebook.com/"+account_id+"/picture?type=large")
+                    .load(personPhotoUrl)
                     .thumbnail(0.5f)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(im_profile_nav);
+            //new HomeActivity.DownloadImage((ImageView)findViewById(R.id.im_profile_nav)).execute(personPhotoUrl);
             tv_name_nav.setText(personName);
             tv_email_nav.setText(email);
 
@@ -116,8 +125,6 @@ public class HomeActivity extends AppCompatActivity
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
-
 
     }
 
@@ -158,7 +165,14 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if (id == R.id.nav_NewPlace) {
+
+        if (id == R.id.nav_home) {
+            RelativeLayout item2 = (RelativeLayout)findViewById(R.id.home_for_fragment);
+            View child = getLayoutInflater().inflate(R.layout.content_home, null);
+            getSupportActionBar().setTitle("หน้าแรก");
+            item2.addView(child);
+
+        }else if (id == R.id.nav_NewPlace) {
 
            NewPlaceFragment newPlaceFragment= new NewPlaceFragment();
             FragmentManager manager= getSupportFragmentManager();
@@ -178,32 +192,79 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_sharering) {
 
+            ShareringFragment shareringFragment= new ShareringFragment();
+            FragmentManager manager= getSupportFragmentManager();
+            manager.beginTransaction().replace(
+                    R.id.home_for_fragment,
+                    shareringFragment,
+                    shareringFragment.getTag()
+            ).commit();
         } else if (id == R.id.nav_share_noti) {
+
+            ShareNotiFragment shareNotiFragment= new ShareNotiFragment();
+            FragmentManager manager= getSupportFragmentManager();
+            manager.beginTransaction().replace(
+                    R.id.home_for_fragment,
+                    shareNotiFragment,
+                    shareNotiFragment.getTag()
+            ).commit();
 
         } else if (id == R.id.nav_follow_noti) {
 
+            FollowNotiFragment followNotiFragment= new FollowNotiFragment();
+            FragmentManager manager= getSupportFragmentManager();
+            manager.beginTransaction().replace(
+                    R.id.home_for_fragment,
+                    followNotiFragment,
+                    followNotiFragment.getTag()
+            ).commit();
+
         } else if (id == R.id.nav_config) {
+
+            ConfigFragment configFragment= new ConfigFragment();
+            FragmentManager manager= getSupportFragmentManager();
+            manager.beginTransaction().replace(
+                    R.id.home_for_fragment,
+                    configFragment,
+                    configFragment.getTag()
+            ).commit();
 
         } else if (id == R.id.nav_QA) {
 
-        } else if (id == R.id.nav_logout) {
-            Auth.GoogleSignInApi.signOut(mGoogleApiClient2).setResultCallback(
-                    new ResultCallback<Status>() {
-                        @Override
-                        public void onResult(Status status) {
-                            Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient2).setResultCallback(
-                                    new ResultCallback<Status>() {
-                                        @Override
-                                        public void onResult(Status status) {
-                                            Intent intent_RevokeAccess = new Intent(HomeActivity.this, ChooseLoginActivity.class);
-                                            //facbook logout
-                                            LoginManager.getInstance().logOut();
+            QAFragment qaFragment = new QAFragment();
+            FragmentManager manager= getSupportFragmentManager();
+            manager.beginTransaction().replace(
+                    R.id.home_for_fragment,
+                    qaFragment,
+                    qaFragment.getTag()
+            ).commit();
 
-                                            startActivity(intent_RevokeAccess);
-                                        }
-                                    });
-                        }
-                    });
+        } else if (id == R.id.nav_logout) {
+            if(statusLogin.equals("google")) {
+                Auth.GoogleSignInApi.signOut(mGoogleApiClient2).setResultCallback(
+                        new ResultCallback<Status>() {
+                            @Override
+                            public void onResult(Status status) {
+                                Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient2).setResultCallback(
+                                        new ResultCallback<Status>() {
+                                            @Override
+                                            public void onResult(Status status) {
+                                                Intent intent_RevokeAccess = new Intent(HomeActivity.this, ChooseLoginActivity.class);
+                                                startActivity(intent_RevokeAccess);
+                                            }
+                                        });
+                            }
+                        });
+            }else if (statusLogin.equals("facebook")) {
+                //facbook logout
+                LoginManager.getInstance().logOut();
+                Intent intent_RevokeAccess = new Intent(HomeActivity.this, ChooseLoginActivity.class);
+                startActivity(intent_RevokeAccess);
+
+            }else if(statusLogin.equals("Nologin")){
+                Intent intent_RevokeAccess = new Intent(HomeActivity.this, ChooseLoginActivity.class);
+                startActivity(intent_RevokeAccess);
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -215,5 +276,6 @@ public class HomeActivity extends AppCompatActivity
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
+
 
 }
