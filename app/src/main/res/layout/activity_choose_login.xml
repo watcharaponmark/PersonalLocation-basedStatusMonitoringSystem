@@ -31,7 +31,7 @@
             android:layout_height="230dp"
             android:layout_weight="0.11" />
 
-        <Button
+       <Button
             android:text="เข้าสู่ระบบด้วย Facebook"
             android:layout_width="match_parent"
             android:id="@+id/bt_loginFacebook"
@@ -45,14 +45,13 @@
             android:layout_weight="0.07"
             android:layout_marginTop="60dp" />
 
-       <!-- <com.facebook.login.widget.LoginButton
-            android:visibility="gone"
-            android:id="@+id/login_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp" /> -->
+        <com.facebook.login.widget.LoginButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            com_facebook_confirm_logout="false"
+            com_facebook_tooltip_mode="never_display"
+            android:layout_weight="0.14" />
 
         <TextView
             android:text="หรือ"

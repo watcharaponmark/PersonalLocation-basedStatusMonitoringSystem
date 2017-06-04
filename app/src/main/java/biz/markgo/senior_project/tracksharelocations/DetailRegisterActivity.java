@@ -41,7 +41,7 @@ public class DetailRegisterActivity extends AppCompatActivity {
         final String personName = intent.getStringExtra("personName");
         final String personPhotoUrl = intent.getStringExtra("personPhotoUrl");
         final String email = intent.getStringExtra("email");
-        final String user_id = intent.getStringExtra("user_id");
+        final String account_id = intent.getStringExtra("account_id");
 
         tv_Email.setText(email);
         et_name.setText(personName);
@@ -56,7 +56,7 @@ public class DetailRegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 BackGround b = new BackGround();
-                b.execute(user_id, email,personName,personPhotoUrl,statusLogin,et_followID.getText().toString());
+                b.execute(account_id, email,personName,personPhotoUrl,statusLogin,et_followID.getText().toString());
 
             }
         });
@@ -65,7 +65,7 @@ public class DetailRegisterActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String user_id = params[0];
+            String account_id = params[0];
             String email = params[1];
             String name = params[2];
             String picture_name = params[3];
@@ -76,7 +76,7 @@ public class DetailRegisterActivity extends AppCompatActivity {
 
             try {
                 URL url = new URL("http://senior-project.markgo.biz/member/register.php");
-                String urlParams = "user_id="+user_id
+                String urlParams = "account_id="+account_id
                         +"&email="+email
                         +"&name="+name
                         +"&picture_name="+picture_name
@@ -117,12 +117,12 @@ public class DetailRegisterActivity extends AppCompatActivity {
                 String personName = intent.getStringExtra("personName");
                 String personPhotoUrl = intent.getStringExtra("personPhotoUrl");
                 String email = intent.getStringExtra("email");
-                String user_id = intent.getStringExtra("user_id");
+                String account_id = intent.getStringExtra("account_id");
                 intentHomeActivity.putExtra("statusLogin","google");
                 intentHomeActivity.putExtra("personName",personName);
                 intentHomeActivity.putExtra("personPhotoUrl",personPhotoUrl);
                 intentHomeActivity.putExtra("email",email);
-                intentHomeActivity.putExtra("user_id",user_id);
+                intentHomeActivity.putExtra("account_id",account_id);
                 startActivity(intentHomeActivity);
             }
             Toast.makeText(ctx, s, Toast.LENGTH_LONG).show();

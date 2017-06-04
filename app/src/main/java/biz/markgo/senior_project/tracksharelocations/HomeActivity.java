@@ -2,12 +2,9 @@ package biz.markgo.senior_project.tracksharelocations;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -32,15 +29,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.NewPlaceFragment;
+import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.NewTrackingFragment;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener , GoogleApiClient.OnConnectionFailedListener {
@@ -86,13 +76,14 @@ public class HomeActivity extends AppCompatActivity
         final String personName = intent.getStringExtra("personName");
         final String personPhotoUrl = intent.getStringExtra("personPhotoUrl");
         String email = intent.getStringExtra("email");
-        String user_id = intent.getStringExtra("user_id");
-        Log.i(TAG,email+" "+user_id+" "+personName+" "+personPhotoUrl);
+        String account_id = intent.getStringExtra("account_id");
 
-        //Nologin
-        String nameNologin = intent.getStringExtra("name_nologin");
+        Log.i(TAG,email+" "+account_id+" "+personName+" "+personPhotoUrl);
+
         if(statusLogin.equals("google")){
-       Glide.with(getApplicationContext()).load(personPhotoUrl)
+
+       Glide.with(getApplicationContext())
+                .load(personPhotoUrl)
                 .thumbnail(0.5f)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -100,6 +91,18 @@ public class HomeActivity extends AppCompatActivity
 
         tv_name_nav.setText(personName);
         tv_email_nav.setText(email);
+
+        }else if(statusLogin.equals("facebook")) {
+
+            Glide.with(getApplicationContext())
+                    .load("http://graph.facebook.com/"+account_id+"/picture?type=large")
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(im_profile_nav);
+            tv_name_nav.setText(personName);
+            tv_email_nav.setText(email);
+
         }else if(statusLogin.equals("Nologin")){
             im_profile_nav.setImageResource(R.mipmap.ic_launcher);
             tv_name_nav.setText("ผู้ใช้ทั่วไป");
@@ -155,18 +158,29 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if (id == R.id.nav_NewPlace) {
 
-        if (id == R.id.nav_camera) {
+           NewPlaceFragment newPlaceFragment= new NewPlaceFragment();
+            FragmentManager manager= getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.home_for_fragment,
+                    newPlaceFragment,
+                    newPlaceFragment.getTag()
+            ).commit();
+        } else if (id == R.id.nav_NewTacking) {
 
-        } else if (id == R.id.nav_gallery) {
+            NewTrackingFragment newTrackingFragment= new NewTrackingFragment();
+            FragmentManager manager= getSupportFragmentManager();
+            manager.beginTransaction().replace(
+                    R.id.home_for_fragment,
+                    newTrackingFragment,
+                    newTrackingFragment.getTag()
+            ).commit();
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_sharering) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_share_noti) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_follow) {
+        } else if (id == R.id.nav_follow_noti) {
 
         } else if (id == R.id.nav_config) {
 
@@ -182,12 +196,16 @@ public class HomeActivity extends AppCompatActivity
                                         @Override
                                         public void onResult(Status status) {
                                             Intent intent_RevokeAccess = new Intent(HomeActivity.this, ChooseLoginActivity.class);
+                                            //facbook logout
+                                            LoginManager.getInstance().logOut();
+
                                             startActivity(intent_RevokeAccess);
                                         }
                                     });
                         }
                     });
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

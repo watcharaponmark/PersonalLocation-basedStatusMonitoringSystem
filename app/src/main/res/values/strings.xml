@@ -15,5 +15,8 @@
     <string name="btn_start_location_updates">START LOCATION UPDATES</string>
     <string name="btn_stop_location_updates">STOP LOCATION UPDATES</string>
     <string name="Map_api_key">AIzaSyAMFNqzykZa7u38Aad73GEbTLKtgD0Vebo</string>
-    <string name="facebook_app_id">603838439822823</string>
+    <string name="facebook_app_id">430026434012016</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

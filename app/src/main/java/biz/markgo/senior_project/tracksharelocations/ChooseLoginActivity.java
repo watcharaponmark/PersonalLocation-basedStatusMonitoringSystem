@@ -3,6 +3,7 @@ package biz.markgo.senior_project.tracksharelocations;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -17,13 +18,19 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.login.widget.ProfilePictureView;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -44,10 +51,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = ChooseLoginActivity.class.getSimpleName();
-    private CallbackManager callbackManager;
+
     private LoginButton loginButton;
     private TextView btnLogin;
     private ProgressDialog progressDialog;
@@ -58,30 +65,41 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
     private ProgressDialog mProgressDialog;
 
     //ข้อมูลผู้ใช้ google
-    String personName="";
-    String personPhotoUrl="";
+    String personName = "";
+    String personPhotoUrl = "";
     String email = "";
-    String user_id="";
+    String account_id = "";
 
-    Context ctx=this;
+    Context ctx = this;
+
+    CallbackManager callbackManager;
+   // ProfileTracker profileTracker;
+    private ProfilePictureView profilePicture;
+    private Button postLinkBotton;
+    private Button postPictureButton;
+
+    private String email_facebook;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
+
+        //login_facebook();
+
         setContentView(R.layout.activity_choose_login);
 
-        Button bt_loginFacebook =(Button) findViewById(R.id.bt_loginFacebook);
-        Button bt_loginGoogle =(Button) findViewById(R.id.bt_loginGoogle);
-        TextView tv_loginNo =(TextView) findViewById(R.id.tv_loginNo);
+        Button bt_loginFacebook = (Button) findViewById(R.id.bt_loginFacebook);
+        Button bt_loginGoogle = (Button) findViewById(R.id.bt_loginGoogle);
+        TextView tv_loginNo = (TextView) findViewById(R.id.tv_loginNo);
 
         //เมื่อคลิ๊กปุ่มเข้าสู่ระบบผ่าน facebook
         bt_loginFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(PrefUtils.getCurrentUser(ChooseLoginActivity.this) != null){
-                    Intent homeIntent = new Intent(ChooseLoginActivity.this, HomeActivity.class);
-                    startActivity(homeIntent);
-                    finish();
-                }*/
+                login_facebook();
             }
         });
 
@@ -91,7 +109,7 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
                 .build();
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this,this)
+                .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
@@ -108,30 +126,37 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
         tv_loginNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ChooseLoginActivity.this,HomeActivity.class);
-                intent.putExtra("name_nologin","Noname");
-                intent.putExtra("statusLogin","Nologin");
+                Intent intent = new Intent(ChooseLoginActivity.this, HomeActivity.class);
+                intent.putExtra("statusLogin", "Nologin");
                 startActivity(intent);
             }
         });
+
+
+       /* profileTracker = new ProfileTracker() {
+            @Override
+            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
+                updateUI();
+            }
+        };*/
     }
 
-//ส่วนโปรแกรม google login
+    //ส่วนโปรแกรม google login
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-           //Log.e(TAG, "display name: " + acct.getDisplayName());
-           // Log.i(TAG,acct.toString());
-            user_id=acct.getId().toString();
+            //Log.e(TAG, "display name: " + acct.getDisplayName());
+            // Log.i(TAG,acct.toString());
+            account_id = acct.getId().toString();
             email = acct.getEmail().toString();
             personName = acct.getDisplayName().toString();
             personPhotoUrl = acct.getPhotoUrl().toString();
 
-           //ส่งค่าไปคลาส BackGround เพื่อเช็คว่ามีสมาชิกใน database server ยัง
+            //ส่งค่าไปคลาส BackGround เพื่อเช็คว่ามีสมาชิกใน database server ยัง
             BackGround b = new BackGround();
-            b.execute(user_id, email);
+            b.execute(account_id, email);
 
         } else {
         }
@@ -146,7 +171,7 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }
-        //callbackManager.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
 
@@ -183,9 +208,10 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
 
-    public GoogleApiClient getmGoogleApiClient(){
+    public GoogleApiClient getmGoogleApiClient() {
         return this.mGoogleApiClient;
     }
+
     private void showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
@@ -202,171 +228,133 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
         }
     }
 
+    private void login_facebook() {
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
 
-  /*  //ส่วนโปรแกรม facebook login
+
+                //updateUI();
+            }
+            @Override
+            public void onCancel() {
+                //updateUI();
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                updateUI();
+            }
+        });
+
+    }
+    private void updateUI() {
+        boolean loggedIn = AccessToken.getCurrentAccessToken() != null;
+        Profile profile = Profile.getCurrentProfile();
+        if (loggedIn && (profile != null)) {
+
+            Intent intenHomeActivity = new Intent(ChooseLoginActivity.this, HomeActivity.class);
+            intenHomeActivity.putExtra("statusLogin", "facebook");
+            intenHomeActivity.putExtra("personName", profile.getName());
+            //intenHomeActivity.putExtra("personPhotoUrl", personPhotoUrl);
+            intenHomeActivity.putExtra("email",email_facebook);
+            intenHomeActivity.putExtra("account_id", profile.getId());
+            startActivity(intenHomeActivity);
+        } else {
+            // profilePicture.setProfileId(null);
+//            username.setText(null);
+//            postLinkBotton.setText(null);
+//            postLinkBotton.setEnabled(false);
+//            postPictureButton.setEnabled(false);
+        }
+    }
+
+  /*  @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //profileTracker.stopTracking();
+    }*/
+
     @Override
     protected void onResume() {
         super.onResume();
-
-
-        callbackManager=CallbackManager.Factory.create();
-
-       loginButton= (LoginButton)findViewById(R.id.login_button);
-
-       loginButton.setReadPermissions("public_profile", "email","user_friends");
-
-        btnLogin= (TextView) findViewById(R.id.bt_loginFacebook);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                progressDialog = new ProgressDialog(ChooseLoginActivity.this);
-                progressDialog.setMessage("Loading...");
-                progressDialog.show();
-
-                loginButton.performClick();
-
-                loginButton.setPressed(true);
-
-                loginButton.invalidate();
-
-                loginButton.registerCallback(callbackManager, mCallBack);
-
-                loginButton.setPressed(false);
-
-                loginButton.invalidate();
-
-            }
-        });
+        updateUI();
     }
 
+    class BackGround extends AsyncTask<String, String, String> {
 
-    private FacebookCallback<LoginResult> mCallBack = new FacebookCallback<LoginResult>() {
         @Override
-        public void onSuccess(LoginResult loginResult) {
+        protected String doInBackground(String... params) {
+            String account_id = params[0];
+            String email = params[1];
+            String data = "";
+            int tmp;
 
-            progressDialog.dismiss();
+            try {
+                URL url = new URL("http://senior-project.markgo.biz/member/member_status_check.php");
+                String urlParams = "account_id=" + account_id + "&email=" + email;
 
-            // App code
-            GraphRequest request = GraphRequest.newMeRequest(
-                    loginResult.getAccessToken(),
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(
-                                JSONObject object,
-                                GraphResponse response) {
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setDoOutput(true);
+                OutputStream os = httpURLConnection.getOutputStream();
+                os.write(urlParams.getBytes());
+                os.flush();
+                os.close();
 
-                            Log.e("response: ", response + "");
-                            try {
-                                user = new User();
-                                user.facebookID = object.getString("id").toString();
-                                user.email = object.getString("email").toString();
-                                user.name = object.getString("name").toString();
-                                user.gender = object.getString("gender").toString();
-                                PrefUtils.setCurrentUser(user,ChooseLoginActivity.this);
+                InputStream is = httpURLConnection.getInputStream();
+                while ((tmp = is.read()) != -1) {
+                    data += (char) tmp;
+                }
 
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
-                            Toast.makeText(ChooseLoginActivity.this,"welcome "+user.name,Toast.LENGTH_LONG).show();
-                            Intent intent=new Intent(ChooseLoginActivity.this,HomeActivity.class);
-                            startActivity(intent);
-                            finish();
+                is.close();
+                httpURLConnection.disconnect();
+                return data;
 
-                        }
-
-                    });
-
-            Bundle parameters = new Bundle();
-            parameters.putString("fields", "id,name,email,gender, birthday");
-            request.setParameters(parameters);
-            request.executeAsync();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                return "Exception: " + e.getMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "Exception: " + e.getMessage();
+            }
         }
 
         @Override
-        public void onCancel() {
-            progressDialog.dismiss();
+        protected void onPostExecute(String s) {
+            String err = null;
+            String statusID = "";
+            try {
+                JSONObject root = new JSONObject(s);
+                JSONObject check_member = root.getJSONObject("check_member");
+                statusID = check_member.getString("statusID");
+                Log.i(TAG, statusID);
+                Log.i(TAG, account_id);
+                Log.i(TAG, email);
+                if (statusID.equals("No")) {
+                    Intent intenDetailRegisterActivity = new Intent(ChooseLoginActivity.this, DetailRegisterActivity.class);
+                    intenDetailRegisterActivity.putExtra("statusLogin", "google");
+                    intenDetailRegisterActivity.putExtra("personName", personName);
+                    intenDetailRegisterActivity.putExtra("personPhotoUrl", personPhotoUrl);
+                    intenDetailRegisterActivity.putExtra("email", email);
+                    intenDetailRegisterActivity.putExtra("account_id", account_id);
+                    startActivity(intenDetailRegisterActivity);
+
+                } else if (statusID.equals("Yes")) {
+                    Intent intenHomeActivity = new Intent(ChooseLoginActivity.this, HomeActivity.class);
+                    intenHomeActivity.putExtra("statusLogin", "google");
+                    intenHomeActivity.putExtra("personName", personName);
+                    intenHomeActivity.putExtra("personPhotoUrl", personPhotoUrl);
+                    intenHomeActivity.putExtra("email", email);
+                    intenHomeActivity.putExtra("account_id", account_id);
+                    startActivity(intenHomeActivity);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                err = "Exception: " + e.getMessage();
+            }
+
         }
-
-        @Override
-        public void onError(FacebookException e) {
-            progressDialog.dismiss();
-        }
-    };*/
-  class BackGround extends AsyncTask<String, String, String> {
-
-      @Override
-      protected String doInBackground(String... params) {
-          String user_id = params[0];
-          String email = params[1];
-          String data="";
-          int tmp;
-
-          try {
-              URL url = new URL("http://senior-project.markgo.biz/member/member_status_check.php");
-              String urlParams = "user_id="+user_id+"&email="+email;
-
-              HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-              httpURLConnection.setDoOutput(true);
-              OutputStream os = httpURLConnection.getOutputStream();
-              os.write(urlParams.getBytes());
-              os.flush();
-              os.close();
-
-              InputStream is = httpURLConnection.getInputStream();
-              while((tmp=is.read())!=-1){
-                  data+= (char)tmp;
-              }
-
-              is.close();
-              httpURLConnection.disconnect();
-              return data;
-
-          } catch (MalformedURLException e) {
-              e.printStackTrace();
-              return "Exception: "+e.getMessage();
-          } catch (IOException e) {
-              e.printStackTrace();
-              return "Exception: "+e.getMessage();
-          }
-      }
-
-      @Override
-      protected void onPostExecute(String s) {
-          String err=null;
-          String statusID="";
-          try {
-              JSONObject root = new JSONObject(s);
-              JSONObject check_member = root.getJSONObject("check_member");
-              statusID = check_member.getString("statusID");
-              Log.i(TAG,statusID);
-              Log.i(TAG,user_id);
-              Log.i(TAG,email);
-              if(statusID.equals("No")){
-                  Intent intenDetailRegisterActivity=new Intent(ChooseLoginActivity.this,DetailRegisterActivity.class);
-                  intenDetailRegisterActivity.putExtra("statusLogin","google");
-                  intenDetailRegisterActivity.putExtra("personName",personName);
-                  intenDetailRegisterActivity.putExtra("personPhotoUrl",personPhotoUrl);
-                  intenDetailRegisterActivity.putExtra("email",email);
-                  intenDetailRegisterActivity.putExtra("user_id",user_id);
-                  startActivity(intenDetailRegisterActivity);
-
-              }else if(statusID.equals("Yes")){
-                  Intent intenHomeActivity=new Intent(ChooseLoginActivity.this,HomeActivity.class);
-                  intenHomeActivity.putExtra("statusLogin","google");
-                  intenHomeActivity.putExtra("personName",personName);
-                  intenHomeActivity.putExtra("personPhotoUrl",personPhotoUrl);
-                  intenHomeActivity.putExtra("email",email);
-                  intenHomeActivity.putExtra("user_id",user_id);
-                  startActivity(intenHomeActivity);
-              }
-
-          } catch (JSONException e) {
-              e.printStackTrace();
-              err = "Exception: "+e.getMessage();
-          }
-
-      }
-  }
+    }
 
 }
