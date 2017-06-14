@@ -19,8 +19,10 @@
             android:icon="@drawable/ic_speaker_phone_black_24dp"
             android:title="การแชร์ตำแหน่ง" />
 
+
     <item android:title="การแจ้งเตือน">
         <menu>
+            <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nav_share_noti"
                 android:icon="@drawable/ic_menu_share"
@@ -29,12 +31,14 @@
                 android:id="@+id/nav_follow_noti"
                 android:icon="@drawable/ic_menu_send"
                 android:title="การติดตาม" />
+            </group>
         </menu>
+
     </item>
 
-        <item android:titleCondensed="ทัวไป"
-            android:title="การตั้งค่าและการช่วยเหลือ">
+        <item android:title="การตั้งค่าและการช่วยเหลือ">
         <menu>
+            <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nav_config"
                 android:icon="@drawable/ic_setting_light"
@@ -47,6 +51,7 @@
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_power_settings_new_black_24dp"
                 android:title="ออกจากระบบ" />
+            </group>
         </menu>
         </item>
     </group>

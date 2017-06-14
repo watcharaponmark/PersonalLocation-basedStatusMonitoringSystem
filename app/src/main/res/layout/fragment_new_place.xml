@@ -29,7 +29,7 @@
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/et_PlaceName"
-                    android:hint="ชื่อสถานที่"
+                    android:hint=" ชื่อสถานที่"
                     android:layout_marginTop="5dp"
                     android:layout_height="49dp"
                     android:layout_weight="1" />
@@ -47,8 +47,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/tv_address"
-                    android:layout_weight="9.5"
-                    android:hint="ที่อยู่"
+                    android:layout_weight="10.19"
+                    android:hint="  ที่อยู่"
                     android:textSize="18sp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/black" />
@@ -56,12 +56,11 @@
                 <Button
                     android:layout_width="48dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/button"
+                    android:id="@+id/bt_re"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/reset1"
-                    android:layout_weight="0.5" />
+                    android:background="@drawable/reset1" />
             </LinearLayout>
 
         </LinearLayout>
@@ -72,19 +71,32 @@
             android:layout_height="443dp"
             android:layout_weight="6">
 
-            <TextView
-                android:text="ที่อยู่"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView"
-                android:layout_weight="0.42"/>
+                android:layout_height="49dp">
+
+                <TextView
+                    android:text="รัศมี :"
+                    android:layout_width="61dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView3"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/background_dark" />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/spinner_radius" />
+            </LinearLayout>
 
             <fragment
                 android:id="@+id/map"
                 android:layout_width="match_parent"
-                android:layout_height="404dp"
-                class="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_weight="1" />
+                android:layout_height="464dp"
+                class="com.google.android.gms.maps.SupportMapFragment" />
         </LinearLayout>
 
         <LinearLayout
@@ -103,7 +115,7 @@
                     android:text="ยกเลิก"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button2"
+                    android:id="@+id/bt_cancel_fnp"
                     android:layout_weight="1"
                     android:background="?android:attr/colorPressedHighlight"
                     android:textColor="@android:color/white"
@@ -126,7 +138,7 @@
                     android:text="บันทึก"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button3"
+                    android:id="@+id/bt_addplace_fnp"
                     android:layout_weight="1"
                     android:background="@color/com_facebook_button_send_background_color_pressed"
                     android:textColor="@android:color/white"
@@ -140,6 +152,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
 
 
 </FrameLayout>

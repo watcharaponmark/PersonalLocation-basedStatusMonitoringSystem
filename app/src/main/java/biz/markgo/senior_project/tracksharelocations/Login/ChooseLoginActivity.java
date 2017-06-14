@@ -1,23 +1,20 @@
-package biz.markgo.senior_project.tracksharelocations;
+package biz.markgo.senior_project.tracksharelocations.Login;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -25,20 +22,16 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
-import com.facebook.GraphRequestAsyncTask;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.facebook.login.widget.ProfilePictureView;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -52,20 +45,30 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
+
+import biz.markgo.senior_project.tracksharelocations.HomeActivity;
+import biz.markgo.senior_project.tracksharelocations.R;
+import biz.markgo.senior_project.tracksharelocations.User_Data;
 
 public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = ChooseLoginActivity.class.getSimpleName();
 
+    // กำหนดค่าเริ่มต้นของสถานะเป็น false
+    Boolean isInternetPresent = false;
 
+    // เรียกใช้งาน  ConnectionDetector
+    ConnectionDetector_Internet cdi;
     //ข้อมูลผู้ใช้
     private String statusLogin = "";
-    private String personName = "";
     private String personPhotoUrl = "";
     private String email = "";
     private String account_id = "";
+    private String FirstName="";
+    private String LastName="";
     private String email_facebook="";
-    User user=new User();
+
 
     //facebook
     private CallbackManager callbackManager;
@@ -91,6 +94,9 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
         LoginButton bt_loginFacebook = (LoginButton) findViewById(R.id.bt_loginFacebook);
 
 
+        cdi = new ConnectionDetector_Internet(getApplicationContext());
+        isInternetPresent = cdi.isConnectingToInternet();
+
         // facebook
         callbackManager = CallbackManager.Factory.create();
         accessTokenTracker = new AccessTokenTracker() {
@@ -101,13 +107,14 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
         profileTracker = new ProfileTracker() {
             @Override
             protected void onCurrentProfileChanged(Profile oldProfile, Profile newProfile) {
-                nextActivity(newProfile);
+               // nextActivity(newProfile);
             }
         };
         accessTokenTracker.startTracking();
         profileTracker.startTracking();
 
         FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
+
             @Override
             public void onSuccess(LoginResult loginResult) {
 
@@ -122,7 +129,7 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
                                 } else {
 
                                     email_facebook = object.optString("email");
-                                    user.email_facebook = object.optString("email");
+                                    User_Data.setEmail(email_facebook);
                                     Log.e(TAG, "Json Object Data " + object + " Email id " +  email_facebook);
                                 }
 
@@ -136,7 +143,7 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
                 //Log.i(TAG, user.email_facebook );
                 Profile profile = Profile.getCurrentProfile();
                 nextActivity(profile);
-                Toast.makeText(getApplicationContext(), "เข้าสู่ระบบ...", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "เข้าสู่ระบบ...", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -167,8 +174,20 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
         bt_loginGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(signInIntent, RC_SIGN_IN);
+                // ตรวจสอบสถานะการเชื่อมต่ออินเตอร์เน็ต
+                if (isInternetPresent) {
+                    //หากเชื่อมต่ออินเตอร์เน็ต
+//                    showAlertDialog(ChooseLoginActivity.this, "กำลังเชื่อมต่ออินเตอร์เน็ต",
+//                            "คุณกำลังเชื่อมต่ออินเตอร์เน็ต", true);
+
+                    Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                    startActivityForResult(signInIntent, RC_SIGN_IN);
+                } else {
+                    // หากไม่ได้เชื่อมต่ออินเตอร์เน็ต
+                    showAlertDialog(ChooseLoginActivity.this, "เชื่อต่ออินเตอร์เน็ตล้มเหลว",
+                            "คุณไม่ได้เชื่อมต่ออินเตอร์เน็ต.", false);
+                }
+
             }
         });
 
@@ -177,9 +196,22 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
         tv_loginNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChooseLoginActivity.this, HomeActivity.class);
-                intent.putExtra("statusLogin", "Nologin");
-                startActivity(intent);
+                if (isInternetPresent) {
+                    //หากเชื่อมต่ออินเตอร์เน็ต
+//                    showAlertDialog(ChooseLoginActivity.this, "กำลังเชื่อมต่ออินเตอร์เน็ต",
+//                            "คุณกำลังเชื่อมต่ออินเตอร์เน็ต", true);
+
+                    Intent intent = new Intent(ChooseLoginActivity.this, HomeActivity.class);
+                    intent.putExtra("statusLogin", "Nologin");
+                    Toast.makeText(getApplicationContext(), "เข้าสู่ระบบ...", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                } else {
+                    // หากไม่ได้เชื่อมต่ออินเตอร์เน็ต
+                    showAlertDialog(ChooseLoginActivity.this, "เชื่อต่ออินเตอร์เน็ตล้มเหลว",
+                            "คุณไม่ได้เชื่อมต่ออินเตอร์เน็ต.", false);
+                }
+
+
             }
         });
 
@@ -201,6 +233,7 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
     @Override
     protected void onPause() {
         super.onPause();
+
     }
 
     protected void onStop() {
@@ -214,12 +247,19 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
         if (profile != null) {
             statusLogin = "facebook";
             account_id = profile.getId();
-            personName = profile.getName();
+            FirstName = profile.getFirstName();
+            LastName = profile.getLastName();
             personPhotoUrl = profile.getProfilePictureUri(200, 200).toString();
+
+            User_Data.setStatusLogin(statusLogin);
+            User_Data.setAccount_id(account_id);
+            User_Data.setFirstName(FirstName);
+            User_Data.setLastName(LastName);
+            User_Data.setPersonPhotoUrl(personPhotoUrl);
 
             //ส่งค่าไปคลาส BackGround เพื่อเช็คว่ามีสมาชิกใน database server ยัง
             BackGround b = new BackGround();
-            b.execute(account_id, email_facebook );
+            b.execute(User_Data.getAccount_id(), User_Data.getStatusLogin() );
         }
     }
 
@@ -252,12 +292,21 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
             statusLogin = "google";
             account_id = acct.getId().toString();
             email = acct.getEmail().toString();
-            personName = acct.getDisplayName().toString();
+            FirstName = acct.getGivenName().toString();
+            LastName = acct.getFamilyName().toString();
             personPhotoUrl = acct.getPhotoUrl().toString();
+
+
+            User_Data.setStatusLogin(statusLogin);
+            User_Data.setEmail(email);
+            User_Data.setAccount_id(account_id);
+            User_Data.setFirstName(FirstName);
+            User_Data.setLastName(LastName);
+            User_Data.setPersonPhotoUrl(personPhotoUrl);
 
             //ส่งค่าไปคลาส BackGround เพื่อเช็คว่ามีสมาชิกใน database server ยัง
             BackGround b = new BackGround();
-            b.execute(account_id, email);
+            b.execute(User_Data.getAccount_id(),User_Data.getStatusLogin());
 
         } else {
         }
@@ -317,20 +366,81 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
     }
     //
 
+// เมื่อกดปุ่ม back ให้ออกจากโปรแกรม
+    public void onBackPressed(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("ออกจากแอพพลิเคชัน"); //ไปที่เเวรูเเล้วก็สตริง
+        dialog.setIcon(R.drawable.logo);
+        dialog.setMessage("คุณต้องการออกจากแอพพลิเคชัน ?");
+        dialog.setCancelable(true);
+
+        dialog.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+        dialog.setNegativeButton("ไม่ใช่", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialog.show();
+
+    }
+
+    public void chackInternet(){
+        if (isInternetPresent) {
+            //หากเชื่อมต่ออินเตอร์เน็ต
+//                    showAlertDialog(ChooseLoginActivity.this, "กำลังเชื่อมต่ออินเตอร์เน็ต",
+//                            "คุณกำลังเชื่อมต่ออินเตอร์เน็ต", true);
+
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        } else {
+            // หากไม่ได้เชื่อมต่ออินเตอร์เน็ต
+            showAlertDialog(ChooseLoginActivity.this, "เชื่อต่ออินเตอร์เน็ตล้มเหลว",
+                    "คุณไม่ได้เชื่อมต่ออินเตอร์เน็ต.", false);
+        }
+    }
+
+    //แจ้งเตือนอินเตอเน็ต
+    public void showAlertDialog(Context context, String title, String message, Boolean status) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle(title); //ไปที่เเวรูเเล้วก็สตริง
+        dialog.setIcon(R.drawable.logo);
+        dialog.setMessage(message);
+        dialog.setCancelable(true);
+
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        dialog.show();
+    }
 
     class BackGround extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... params) {
             String account_id = params[0];
-            String email_check = params[1];
+            String statusLogin = params[1];
             String data = "";
             int tmp;
 
             try {
 
                 URL url = new URL("http://senior-project.markgo.biz/member/member_status_check.php");
-                String urlParams = "account_id=" + account_id + "&email=" + email_check;
+                String urlParams = "account_id=" + account_id + "&statusLogin=" + statusLogin;
 
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setDoOutput(true);
@@ -368,43 +478,29 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
                 Log.i(TAG, statusID);
                 Log.i(TAG, account_id);
                 Log.i(TAG,"email_facebook : "+ email_facebook );
-                Log.i(TAG, " user.email_facebook :"+user.email_facebook );
                 Log.i(TAG, email);
                 if (statusID.equals("No")) {
                     Intent intenDetailRegisterActivity = new Intent(ChooseLoginActivity.this, DetailRegisterActivity.class);
 
-                    if(statusLogin.equals("facebook")){
-                        intenDetailRegisterActivity.putExtra("statusLogin", statusLogin);
-                        intenDetailRegisterActivity.putExtra("personName", personName);
-                        intenDetailRegisterActivity.putExtra("personPhotoUrl", personPhotoUrl);
-                        intenDetailRegisterActivity.putExtra("email", email_facebook );
-                        intenDetailRegisterActivity.putExtra("account_id", account_id);
-                    }else if(statusLogin.equals("google")){
-                        intenDetailRegisterActivity.putExtra("statusLogin", statusLogin);
-                        intenDetailRegisterActivity.putExtra("personName", personName);
-                        intenDetailRegisterActivity.putExtra("personPhotoUrl", personPhotoUrl);
-                        intenDetailRegisterActivity.putExtra("email", email);
-                        intenDetailRegisterActivity.putExtra("account_id", account_id);
-                    }
+                        intenDetailRegisterActivity.putExtra("statusLogin",User_Data.getStatusLogin());
+                        intenDetailRegisterActivity.putExtra("FirstName", User_Data.getFirstName());
+                        intenDetailRegisterActivity.putExtra("LastName", User_Data.getLastName());
+                        intenDetailRegisterActivity.putExtra("personPhotoUrl", User_Data.getPersonPhotoUrl());
+                        intenDetailRegisterActivity.putExtra("email", User_Data.getEmail() );
+                        intenDetailRegisterActivity.putExtra("account_id", User_Data.getAccount_id());
 
                     startActivity(intenDetailRegisterActivity);
 
                 } else if (statusID.equals("Yes")) {
+                    Toast.makeText(getApplicationContext(), "เข้าสู่ระบบ...", Toast.LENGTH_SHORT).show();
                     Intent intenHomeActivity = new Intent(ChooseLoginActivity.this, HomeActivity.class);
-                    if(statusLogin.equals("facebook")){
-                        intenHomeActivity.putExtra("statusLogin", statusLogin);
-                        intenHomeActivity.putExtra("personName", personName);
-                        intenHomeActivity.putExtra("personPhotoUrl", personPhotoUrl);
-                        intenHomeActivity.putExtra("email",email_facebook );
-                        intenHomeActivity.putExtra("account_id", account_id);
-                    }else if(statusLogin.equals("google")){
-                        intenHomeActivity.putExtra("statusLogin", statusLogin);
-                        intenHomeActivity.putExtra("personName", personName);
-                        intenHomeActivity.putExtra("personPhotoUrl", personPhotoUrl);
-                        intenHomeActivity.putExtra("email", email);
-                        intenHomeActivity.putExtra("account_id", account_id);
-                    }
 
+                        intenHomeActivity.putExtra("statusLogin",User_Data.getStatusLogin());
+                        intenHomeActivity.putExtra("FirstName", User_Data.getFirstName());
+                        intenHomeActivity.putExtra("LastName", User_Data.getLastName());
+                        intenHomeActivity.putExtra("personPhotoUrl", User_Data.getPersonPhotoUrl());
+                        intenHomeActivity.putExtra("email", User_Data.getEmail() );
+                        intenHomeActivity.putExtra("account_id", User_Data.getAccount_id());
                     startActivity(intenHomeActivity);
                 }
 
@@ -414,6 +510,9 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
             }
 
         }
+
+
+
     }
 
 }

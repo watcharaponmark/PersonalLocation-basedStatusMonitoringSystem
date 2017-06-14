@@ -1,10 +1,12 @@
 package biz.markgo.senior_project.tracksharelocations;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -31,6 +33,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import biz.markgo.senior_project.tracksharelocations.Login.ChooseLoginActivity;
 import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.ConfigFragment;
 import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.FollowNotiFragment;
 import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.NewPlaceFragment;
@@ -49,10 +52,9 @@ public class HomeActivity extends AppCompatActivity
     private TextView txtName, txtEmail;
     String Namesnippet="";
 
-    private User user;
     private ImageView profileImage;
     Bitmap bitmap;
-    String statusLogin;
+    String statusLogin,FirstName,LastName,personPhotoUrl,email,account_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,40 +79,47 @@ public class HomeActivity extends AppCompatActivity
         TextView tv_email_nav=(TextView) header.findViewById(R.id.tv_email_nav);
 
         //login status
+
         final Intent intent = getIntent();
         statusLogin = intent.getStringExtra("statusLogin");
+        FirstName = intent.getStringExtra("FirstName");
+        LastName = intent.getStringExtra("LastName");
+        personPhotoUrl = intent.getStringExtra("personPhotoUrl");
+        email = intent.getStringExtra("email");
+        account_id = intent.getStringExtra("account_id");
 
-        //login google
-        final String personName = intent.getStringExtra("personName");
-        final String personPhotoUrl = intent.getStringExtra("personPhotoUrl");
-        String email = intent.getStringExtra("email");
-        String account_id = intent.getStringExtra("account_id");
+        User_Data.setStatusLogin(statusLogin);
+        User_Data.setFirstName(FirstName);
+        User_Data.setLastName(LastName);
+        User_Data.setPersonPhotoUrl(personPhotoUrl);
+        User_Data.setEmail(email);
+        User_Data.setAccount_id(account_id);
 
-        Log.i(TAG,email+" "+account_id+" "+personName+" "+personPhotoUrl);
+        Log.i(TAG,email+" "+account_id+" "+FirstName+LastName+" "+personPhotoUrl);
 
         if(statusLogin.equals("google")){
 
        Glide.with(getApplicationContext())
-                .load(personPhotoUrl)
+                .load(User_Data.getPersonPhotoUrl())
                 .thumbnail(0.5f)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(im_profile_nav);
 
-        tv_name_nav.setText(personName);
-        tv_email_nav.setText(email);
+        tv_name_nav.setText(User_Data.getFirstName()+" "+User_Data.getLastName());
+        tv_email_nav.setText(User_Data.getEmail());
 
         }else if(statusLogin.equals("facebook")) {
            //"http://graph.facebook.com/"+account_id+"/picture?type=large" ลิ้งภาพ
             Glide.with(getApplicationContext())
-                    .load(personPhotoUrl)
+                    .load(User_Data.getPersonPhotoUrl())
                     .thumbnail(0.5f)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(im_profile_nav);
             //new HomeActivity.DownloadImage((ImageView)findViewById(R.id.im_profile_nav)).execute(personPhotoUrl);
-            tv_name_nav.setText(personName);
-            tv_email_nav.setText(email);
+            tv_name_nav.setText(User_Data.getFirstName()+" "+User_Data.getLastName());
+            tv_email_nav.setText(User_Data.getEmail());
 
         }else if(statusLogin.equals("Nologin")){
             im_profile_nav.setImageResource(R.mipmap.ic_launcher);
@@ -128,14 +137,39 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
+    // เมื่อกดปุ่ม back ให้ออกจากโปรแกรม
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setTitle("ออกจากแอพพลิเคชัน"); //ไปที่เเวรูเเล้วก็สตริง
+            dialog.setIcon(R.drawable.logo);
+            dialog.setMessage("คุณต้องการออกจากแอพพลิเคชัน ?");
+            dialog.setCancelable(true);
+
+            dialog.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_HOME);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            });
+            dialog.setNegativeButton("ไม่ใช่", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            dialog.show();
         }
+
+
     }
 
     @Override
@@ -276,6 +310,8 @@ public class HomeActivity extends AppCompatActivity
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
+
+
 
 
 }

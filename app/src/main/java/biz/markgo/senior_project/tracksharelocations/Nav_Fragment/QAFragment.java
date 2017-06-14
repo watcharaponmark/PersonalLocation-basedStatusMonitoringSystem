@@ -8,17 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import biz.markgo.senior_project.tracksharelocations.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link QAFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link QAFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class QAFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,5 +68,5 @@ public class QAFragment extends Fragment {
         return myFragmentView;
     }
 
-
+    
 }

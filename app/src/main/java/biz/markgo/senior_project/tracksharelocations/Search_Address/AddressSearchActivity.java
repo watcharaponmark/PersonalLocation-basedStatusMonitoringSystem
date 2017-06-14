@@ -1,7 +1,9 @@
-package biz.markgo.senior_project.tracksharelocations;
+package biz.markgo.senior_project.tracksharelocations.Search_Address;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import biz.markgo.senior_project.tracksharelocations.R;
 
 public class AddressSearchActivity extends AppCompatActivity {
 

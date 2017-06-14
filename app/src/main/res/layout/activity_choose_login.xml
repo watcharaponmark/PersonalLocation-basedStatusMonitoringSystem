@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="biz.markgo.senior_project.tracksharelocations.ChooseLoginActivity"
+    tools:context="biz.markgo.senior_project.tracksharelocations.Login.ChooseLoginActivity"
     android:background="#1695A3"
     android:elevation="19dp"
     android:orientation="vertical"
@@ -31,21 +31,21 @@
             android:layout_height="230dp"
             android:layout_weight="0.11"
             android:layout_marginBottom="30dp"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="10dp" />
 
-    <!--   <Button
-            android:text="เข้าสู่ระบบด้วย Facebook"
-            android:layout_width="match_parent"
-            android:id="@+id/bt_loginFacebook"
-            android:textSize="20sp"
-            android:textAllCaps="false"
-            android:background="@drawable/face"
-            android:textColor="#FFFFFA"
-            android:padding="10dp"
-            android:textStyle="normal|bold"
-            android:layout_height="50dp"
-            android:layout_weight="0.07"
-            android:layout_marginTop="60dp" />-->
+        <!--   <Button
+                android:text="เข้าสู่ระบบด้วย Facebook"
+                android:layout_width="match_parent"
+                android:id="@+id/bt_loginFacebook"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:background="@drawable/face"
+                android:textColor="#FFFFFA"
+                android:padding="10dp"
+                android:textStyle="normal|bold"
+                android:layout_height="50dp"
+                android:layout_weight="0.07"
+                android:layout_marginTop="60dp" />-->
 
         <!--facebook:com_facebook_confirm_logout="false"
            facebook:com_facebook_tooltip_mode="never_display"-->
