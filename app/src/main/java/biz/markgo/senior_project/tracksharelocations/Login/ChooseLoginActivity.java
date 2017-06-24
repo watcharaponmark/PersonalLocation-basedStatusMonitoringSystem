@@ -435,12 +435,17 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
             String account_id = params[0];
             String statusLogin = params[1];
             String data = "";
+            String Api_Key = "MemberStatusCheck1234";
+            Log.i(TAG, account_id);
+            Log.i(TAG, statusLogin);
             int tmp;
 
             try {
 
-                URL url = new URL("http://senior-project.markgo.biz/member/member_status_check.php");
-                String urlParams = "account_id=" + account_id + "&statusLogin=" + statusLogin;
+                URL url = new URL("http://api-location-monitoring.markgo.biz/member/member_status_check.php");
+                String urlParams = "API_Key="+Api_Key
+                                   +"&account_id="+account_id
+                                   +"&statusLogin="+statusLogin;
 
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setDoOutput(true);
@@ -470,16 +475,16 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
         @Override
         protected void onPostExecute(String s) {
             String err = null;
-            String statusID = "";
+            String status = "";
             try {
                 JSONObject root = new JSONObject(s);
                 JSONObject check_member = root.getJSONObject("check_member");
-                statusID = check_member.getString("statusID");
-                Log.i(TAG, statusID);
+                status = check_member.getString("status");
+                Log.i(TAG, status);
                 Log.i(TAG, account_id);
                 Log.i(TAG,"email_facebook : "+ email_facebook );
                 Log.i(TAG, email);
-                if (statusID.equals("No")) {
+                if (status.equals("1")) {
                     Intent intenDetailRegisterActivity = new Intent(ChooseLoginActivity.this, DetailRegisterActivity.class);
 
                         intenDetailRegisterActivity.putExtra("statusLogin",User_Data.getStatusLogin());
@@ -491,7 +496,7 @@ public class ChooseLoginActivity extends AppCompatActivity implements GoogleApiC
 
                     startActivity(intenDetailRegisterActivity);
 
-                } else if (statusID.equals("Yes")) {
+                } else if (status.equals("0")) {
                     Toast.makeText(getApplicationContext(), "เข้าสู่ระบบ...", Toast.LENGTH_SHORT).show();
                     Intent intenHomeActivity = new Intent(ChooseLoginActivity.this, HomeActivity.class);
 

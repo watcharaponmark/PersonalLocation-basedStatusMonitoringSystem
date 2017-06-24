@@ -15,14 +15,15 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:layout_weight="9"
-            android:weightSum="6" >
+            android:layout_weight="4.90"
+            android:weightSum="6"
+            android:background="#337885">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="3">
+                android:layout_weight="2.76">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -32,7 +33,9 @@
                     android:hint=" ชื่อสถานที่"
                     android:layout_marginTop="5dp"
                     android:layout_height="49dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1.07"
+                    android:paddingLeft="10dp"
+                    android:textColor="#FFFFFF" />
 
             </LinearLayout>
 
@@ -41,26 +44,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:weightSum="10"
-                android:layout_weight="3">
+                android:layout_weight="3.20">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/tv_address"
-                    android:layout_weight="10.19"
+                    android:layout_weight="9.73"
                     android:hint="  ที่อยู่"
                     android:textSize="18sp"
                     android:gravity="center_vertical"
-                    android:textColor="@android:color/black" />
+                    android:textColor="#FFFFFF"
+                    android:paddingLeft="10dp" />
 
                 <Button
-                    android:layout_width="48dp"
+                    android:layout_width="39dp"
                     android:layout_height="match_parent"
                     android:id="@+id/bt_re"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/reset1" />
+                    android:background="@drawable/reset1"
+                    android:layout_weight="0.21"
+                    android:padding="5dp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -69,12 +75,13 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="443dp"
-            android:layout_weight="6">
+            android:layout_weight="11.30">
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="49dp">
+                android:layout_height="49dp"
+                android:background="#F2C9DC">
 
                 <TextView
                     android:text="รัศมี :"
@@ -95,7 +102,7 @@
             <fragment
                 android:id="@+id/map"
                 android:layout_width="match_parent"
-                android:layout_height="464dp"
+                android:layout_height="match_parent"
                 class="com.google.android.gms.maps.SupportMapFragment" />
         </LinearLayout>
 
@@ -103,7 +110,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" >
+            android:background="#F2C9DC">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -121,7 +128,7 @@
                     android:textColor="@android:color/white"
                     android:textColorHighlight="@android:color/white"
                     android:textSize="20sp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp" />
@@ -140,10 +147,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/bt_addplace_fnp"
                     android:layout_weight="1"
-                    android:background="@color/com_facebook_button_send_background_color_pressed"
+                    android:background="#46C04D"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp" />

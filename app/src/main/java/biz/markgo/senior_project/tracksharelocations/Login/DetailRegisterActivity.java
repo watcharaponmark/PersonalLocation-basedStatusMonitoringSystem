@@ -96,7 +96,7 @@ public class DetailRegisterActivity extends AppCompatActivity {
             int tmp;
 
             try {
-                URL url = new URL("http://senior-project.markgo.biz/member/register.php");
+                URL url = new URL("http://api-location-monitoring.markgo.biz/member/register.php");
                 String urlParams = "API_Key="+Api_Key
                         +"&account_id="+account_id
                         +"&email="+email
@@ -137,10 +137,10 @@ public class DetailRegisterActivity extends AppCompatActivity {
 
             try {
                 JSONObject root = new JSONObject(s);
-                JSONObject response = root.getJSONObject("responsejson");
+                JSONObject response = root.getJSONObject("register_response");
                 status = response.getString("status");
 
-                if(status.equals("TRUE")) {
+                if(status.equals("0")) {
                     Intent intentHomeActivity=new Intent(DetailRegisterActivity.this,HomeActivity.class);
                     intentHomeActivity.putExtra("statusLogin",statusLogin);
                     intentHomeActivity.putExtra("FirstName",et_FirstName.getText().toString());

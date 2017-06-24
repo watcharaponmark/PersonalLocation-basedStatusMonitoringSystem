@@ -38,9 +38,11 @@ import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.ConfigFragment
 import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.FollowNotiFragment;
 import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.NewPlaceFragment;
 import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.NewTrackingFragment;
+import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.PlaceFragment;
 import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.QAFragment;
 import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.ShareNotiFragment;
 import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.ShareringFragment;
+import biz.markgo.senior_project.tracksharelocations.Nav_Fragment.TrackingFragment;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener , GoogleApiClient.OnConnectionFailedListener {
@@ -206,25 +208,28 @@ public class HomeActivity extends AppCompatActivity
             getSupportActionBar().setTitle("หน้าแรก");
             item2.addView(child);
 
-        }else if (id == R.id.nav_NewPlace) {
+        }else if (id == R.id.nav_sharering) {
 
-           NewPlaceFragment newPlaceFragment= new NewPlaceFragment();
-            FragmentManager manager= getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.home_for_fragment,
-                    newPlaceFragment,
-                    newPlaceFragment.getTag()
-            ).commit();
-        } else if (id == R.id.nav_NewTacking) {
-
-            NewTrackingFragment newTrackingFragment= new NewTrackingFragment();
+            PlaceFragment placeFragment= new PlaceFragment();
             FragmentManager manager= getSupportFragmentManager();
             manager.beginTransaction().replace(
                     R.id.home_for_fragment,
-                    newTrackingFragment,
-                    newTrackingFragment.getTag()
+                    placeFragment,
+                    placeFragment.getTag()
             ).commit();
 
-        } else if (id == R.id.nav_sharering) {
+
+        } else if (id == R.id.nav_Tacking) {
+
+            TrackingFragment TrackingFragment= new TrackingFragment();
+            FragmentManager manager= getSupportFragmentManager();
+            manager.beginTransaction().replace(
+                    R.id.home_for_fragment,
+                    TrackingFragment,
+                    TrackingFragment.getTag()
+            ).commit();
+
+        } /*else if (id == R.id.nav_sharering) {
 
             ShareringFragment shareringFragment= new ShareringFragment();
             FragmentManager manager= getSupportFragmentManager();
@@ -233,7 +238,7 @@ public class HomeActivity extends AppCompatActivity
                     shareringFragment,
                     shareringFragment.getTag()
             ).commit();
-        } else if (id == R.id.nav_share_noti) {
+        } */else if (id == R.id.nav_share_noti) {
 
             ShareNotiFragment shareNotiFragment= new ShareNotiFragment();
             FragmentManager manager= getSupportFragmentManager();

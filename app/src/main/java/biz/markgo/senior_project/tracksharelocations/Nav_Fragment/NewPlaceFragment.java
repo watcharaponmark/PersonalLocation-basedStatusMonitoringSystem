@@ -18,6 +18,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -87,42 +88,7 @@ public class NewPlaceFragment extends Fragment {
     private  CharSequence[] values = {"สาธารณะ","ส่วนตัว"};
     String Namesnippet = "";
     String latitude , longitude , Radius , Account_id ,StatusLogin,sharing_status ;
-
-
     private View myFragmentView;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-
-    public NewPlaceFragment() {
-        // Required empty public constructor
-    }
-
-    // TODO: Rename and change types and number of parameters
-    public static NewPlaceFragment newInstance(String param1, String param2) {
-        NewPlaceFragment fragment = new NewPlaceFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -274,8 +240,7 @@ public class NewPlaceFragment extends Fragment {
         configure_button();
 
 
-//
-//                    mMarker = mMap.addMarker(options);
+
 //        mMap = ((SupportMapFragment) myContext.getSupportFragmentManager()
 //        .findFragmentById(R.id.map)).getMap();
         mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map))
@@ -372,14 +337,22 @@ public class NewPlaceFragment extends Fragment {
         bt_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(getActivity(),HomeActivity.class);
-                intent.putExtra("statusLogin",User_Data.getStatusLogin());
-                intent.putExtra("FirstName", User_Data.getFirstName());
-                intent.putExtra("LastName", User_Data.getLastName());
-                intent.putExtra("personPhotoUrl", User_Data.getPersonPhotoUrl());
-                intent.putExtra("email",User_Data.getEmail() );
-                intent.putExtra("account_id", User_Data.getAccount_id());
-                startActivity(intent);
+
+                Fragment fragment = new PlaceFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.home_for_fragment, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+//                Intent intent =new Intent(getActivity(),HomeActivity.class);
+//                intent.putExtra("statusLogin",User_Data.getStatusLogin());
+//                intent.putExtra("FirstName", User_Data.getFirstName());
+//                intent.putExtra("LastName", User_Data.getLastName());
+//                intent.putExtra("personPhotoUrl", User_Data.getPersonPhotoUrl());
+//                intent.putExtra("email",User_Data.getEmail() );
+//                intent.putExtra("account_id", User_Data.getAccount_id());
+//                startActivity(intent);
             }
         });
 
@@ -683,9 +656,9 @@ public class NewPlaceFragment extends Fragment {
 
             try {
 
-                URL url = new URL("http://senior-project.markgo.biz/place/add_newplaces.php");
+                URL url = new URL("http://api-location-monitoring.markgo.biz/place/add_newplaces.php");
                 String urlParams ="API_Key="+Api_Key
-                        +"&Account_id="+Account_id
+                        +"&account_id="+Account_id
                         +"&StatusLogin="+StatusLogin
                         +"&place_name="+placename
                         +"&sub_district="+getSub_district
@@ -730,17 +703,23 @@ public class NewPlaceFragment extends Fragment {
 
             try {
                     JSONObject root = new JSONObject(s);
-                    JSONObject response = root.getJSONObject("responsejson");
+                    JSONObject response = root.getJSONObject("NewPlace_response");
                     status = response.getString("status");
-                if(status.equals("TRUE")) {
-                    Intent intent = new Intent(getActivity(), HomeActivity.class);
-                    intent.putExtra("statusLogin", User_Data.getStatusLogin());
-                    intent.putExtra("FirstName", User_Data.getFirstName());
-                    intent.putExtra("LastName", User_Data.getLastName());
-                    intent.putExtra("personPhotoUrl", User_Data.getPersonPhotoUrl());
-                    intent.putExtra("email", User_Data.getEmail());
-                    intent.putExtra("account_id", User_Data.getAccount_id());
-                    startActivity(intent);
+                if(status.equals("0")) {
+//                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+//                    intent.putExtra("statusLogin", User_Data.getStatusLogin());
+//                    intent.putExtra("FirstName", User_Data.getFirstName());
+//                    intent.putExtra("LastName", User_Data.getLastName());
+//                    intent.putExtra("personPhotoUrl", User_Data.getPersonPhotoUrl());
+//                    intent.putExtra("email", User_Data.getEmail());
+//                    intent.putExtra("account_id", User_Data.getAccount_id());
+//                    startActivity(intent);
+                    Fragment fragment = new PlaceFragment();
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.home_for_fragment, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
                     s = "เพิ่มสถานที่เรียบร้อย";
                     Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
                 }else{

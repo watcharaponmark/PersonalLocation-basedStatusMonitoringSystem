@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="145dp"
+        android:weightSum="1"
+        android:layout_weight="0.10"
+        android:background="#F29EA1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4"
+            android:layout_weight="0.61">
+
+        <ImageView
+                android:layout_width="183dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/common_ic_googleplayservices"
+                android:id="@+id/im_litplace" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="ชื่อสถานที่"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_name_place"
+                    android:layout_weight="1"
+                    android:paddingLeft="5dp"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:text="ตำบล"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_subdis"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:text="อำเภอ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_district"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/black" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:layout_weight="0.20" >
+
+                    <TextView
+                        android:text="จังหวัด"
+                        android:layout_width="108dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tv_province"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:text="รหัสไปรษณี"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_zip_code"
+                        android:gravity="center_vertical"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="22dp"
+                    android:layout_weight="0.98">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/ic_menu_share"
+                        android:id="@+id/imageView2" />
+
+                    <TextView
+                        android:text="สถานะการแบ่งปัน"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tv_sharing_status"
+                        android:gravity="center_vertical"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

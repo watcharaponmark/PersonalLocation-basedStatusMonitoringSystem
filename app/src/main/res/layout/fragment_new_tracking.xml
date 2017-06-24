@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,4 +7,78 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="#337885">
+
+            <EditText
+                android:layout_width="351dp"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editText"
+                android:hint="ID ของคนที่ต้องการติดตาม"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/button2"
+                android:background="@drawable/places_ic_search"
+                android:padding="30dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="431dp"
+            android:weightSum="1"
+            android:layout_weight="0.26"
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical|center_horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"
+                android:id="@+id/imageView3" />
+
+            <TextView
+                android:text="ชื่อผู้ใช้"
+                android:layout_width="match_parent"
+                android:layout_height="77dp"
+                android:id="@+id/tv_name_tracking"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="30sp" />
+
+            <Button
+                android:text="ติดตาม"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bt_trackingfande"
+                android:layout_weight="0.25"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
+                android:textStyle="normal|bold"
+                android:textSize="20sp"
+                android:background="#46C04D" />
+        </LinearLayout>
+
+    </LinearLayout>
 </FrameLayout>
