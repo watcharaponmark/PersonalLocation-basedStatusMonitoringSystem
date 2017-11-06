@@ -23,4 +23,82 @@
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <!--สไตรเวลา-->
+    <style name="date_picker_theme" parent="@android:style/Widget.DatePicker"/>
+
+    <!--สไตรวัน-->
+
+    <style name="Theme_Dialog_Alert" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--item name="android:windowTitleStyle">@android:style/DialogWindowTitle</item-->
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!--สไตรวัน-->
+    <style name="MyDialogTheme_Date" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@color/pink</item>
+        <item name="textColorAlertDialogListItem">@android:color/white</item>
+        <item name="colorAccent">@color/pink</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:windowBackground">@drawable/background_dialog</item>
+    </style>
+
+<!--สไตรเวลา-->
+    <style name="MyDialogTheme_Time" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorControlNormal">@color/indigo</item>
+        <item name="colorControlActivated">@color/pink</item>
+        <item name="textColorAlertDialogListItem">@color/indigo</item>
+        <item name="colorAccent">@color/pink</item>
+        <item name="android:textColorPrimary">@color/indigo</item>
+        <item name="android:windowBackground">@drawable/background_dialog</item>
+    </style>
+
+
+    <!--สไตร sinner-->
+    <style name="TestSpinnerStyle" parent="android:style/Widget.ListView.DropDown">
+        <item name="android:divider">#ff0000</item>
+        <item name="android:dividerHeight">5dp</item>
+    </style>
+
+    <style name="SampleTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:dropDownListViewStyle">@style/TestSpinnerStyle</item>
+    </style>
+
+
+    <!--สไตร DialogManu-->
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--<item name="colorAccent">@color/pink</item>-->
+        <item name="android:textColorPrimary">@color/orange</item>
+        <item name="textColorAlertDialogListItem">#000000</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:background">#FFFFFF</item>
+        <!--<item name="android:divider">@color/orange</item>-->
+        <!--<item name="android:listDivider">@color/orange</item>-->
+        <item name="android:dividerHeight">4dp</item>
+
+
+    </style>
+
+
+    <style name="FacebookLoginButton">
+        <!--<item name="android:textSize">@dimen/smallTxtSize</item>-->
+        <item name="android:background">@drawable/face</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+
+
+
+
 </resources>

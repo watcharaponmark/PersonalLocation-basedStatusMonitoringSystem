@@ -2,13 +2,140 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="biz.markgo.senior_project.tracksharelocations.Nav_Fragment.QAFragment">
+    tools:context=".QA.QAFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E1E5E5">
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_general"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:text="ทั่วไป"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_general"
+                android:gravity="center_vertical"
+                android:textSize="22sp"
+                android:paddingLeft="10dp"
+                android:textColor="@android:color/black" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_location"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:text="แผนที่และตำแหน่ง"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_location"
+                android:gravity="center_vertical"
+                android:textSize="22sp"
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_place"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:text="สถานที่ของฉัน"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_place"
+                android:gravity="center_vertical"
+                android:textSize="22sp"
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_traking"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:text="การติดตามสถานที่"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_traking"
+                android:gravity="center_vertical"
+                android:textSize="22sp"
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_noti"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:text="การแจ้งเตือน"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_noti"
+                android:gravity="center_vertical"
+                android:textSize="22sp"
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_account"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:text="บัญชี/โปรไฟล์"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_account"
+                android:gravity="center_vertical"
+                android:textSize="22sp"
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_policy"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:text="นโยบายความเป็นส่วนตัว"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_policy"
+                android:gravity="center_vertical"
+                android:textSize="22sp"
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
 </FrameLayout>

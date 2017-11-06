@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_config_noti"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="biz.markgo.senior_project.tracksharelocations.Config.ConfigNotiActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/hade_ber"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar_config_noti"
+        app:titleTextColor="@android:color/white" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_config_noti"
+        android:background="#E1E5E5">
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_noti"
+            android:layout_marginTop="2dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="การแจ้งเตือน"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_noti"
+                    android:gravity="center_vertical"
+                    android:textSize="22sp"
+                    android:paddingLeft="10dp"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1" />
+
+                <Switch
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/sw_noti"
+                    android:layout_marginRight="20dp" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_ringtone"
+            android:layout_marginTop="2dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="เสียงแจ้งเตือน  : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_ringtone"
+                    android:gravity="center_vertical"
+                    android:textSize="22sp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:text="เลือกเสียงที่ต้องการ"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_select_sound"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center_vertical"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_suond"
+            android:layout_marginTop="2dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="เสียง"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_suond"
+                    android:gravity="center_vertical"
+                    android:textSize="22sp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/cb_suond"
+                    android:gravity="center_vertical|center_horizontal|start"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginRight="20dp" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_shake"
+            android:layout_marginTop="2dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:text="ระบบสั่น"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_shake"
+                    android:gravity="center_vertical"
+                    android:textSize="22sp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/cb_shake"
+                    android:layout_marginRight="20dp" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_LED"
+            android:layout_marginTop="2dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="แอลอีดี"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_LED"
+                    android:gravity="center_vertical"
+                    android:textSize="22sp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/cb_LED"
+                    android:layout_marginRight="20dp" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+
+</RelativeLayout>

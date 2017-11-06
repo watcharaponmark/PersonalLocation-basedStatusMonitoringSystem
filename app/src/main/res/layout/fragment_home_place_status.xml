@@ -1,0 +1,77 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="biz.markgo.senior_project.tracksharelocations.PlaceStatus.HomePlaceStatusFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:gravity="center_horizontal">
+
+        <!--<fragment-->
+        <!--android:id="@+id/map_home"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--class="com.google.android.gms.maps.SupportMapFragment"-->
+        <!--android:layout_weight="0.87" />-->
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|center_vertical|center_horizontal|end"-->
+        <!--android:layout_margin="@dimen/fab_margin"-->
+        <!--app:srcCompat="@android:drawable/ic_input_add" />-->
+        <!---->
+        <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:id="@+id/map"-->
+        <!--android:name="com.google.android.gms.maps.SupportMapFragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--tools:context="com.example.LocationChooser"-->
+        <!--android:layout_weight="9.78">-->
+
+
+        <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="right|top"-->
+        <!--android:text="Demo Button"-->
+        <!--android:padding="10dp"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:paddingRight="10dp"/>-->
+
+        <!--</fragment>-->
+
+        <fragment
+            android:id="@+id/map_home"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <!--<com.google.android.gms.maps.MapView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/map_home">-->
+
+            <Button
+                android:id="@+id/bt_home_sha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="แบ่งปัน"
+                android:padding="10dp"
+                android:paddingRight="10dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="?android:attr/colorPressedHighlight"
+                android:gravity="center_horizontal" />
+
+        </fragment>
+
+    </LinearLayout>
+
+</FrameLayout>

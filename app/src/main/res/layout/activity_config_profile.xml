@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_config_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="biz.markgo.senior_project.tracksharelocations.Config.Profile.ConfigProfileActivity">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/hade_ber"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar_config_profile"
+        app:titleTextColor="@android:color/white" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_config_profile"
+        android:background="#E1E5E5">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="157dp"
+            android:layout_gravity="center_vertical|center_horizontal">
+
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/com_facebook_profile_picture_blank_square"
+                android:id="@+id/img_change" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal">
+
+                <Button
+                    android:text="เปลี่ยน"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bt_img_change"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="22sp"
+                    android:background="#286075"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                android:text="ชื่อ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_name_profile"
+                android:textSize="18sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/et_name_profile"
+                android:layout_height="54dp"
+                android:textSize="22sp"
+                android:hint="ชื่อ" />
+
+                <TextView
+                android:text="นามสกุล"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_sername_profile"
+                    android:textSize="18sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/et_sername_profile"
+                android:textSize="22sp"
+                android:hint="นามสกุล" />
+
+            <TextView
+                android:text="อีเมล"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_email_profile"
+                android:textSize="18sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/et_email_profile"
+                android:textSize="22sp"
+                android:hint="อีเมล" />
+
+            <TextView
+                android:text="ไอดีผู้ใช้"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_id_profile"
+                android:textSize="18sp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/et_id_profile"
+                    android:textSize="22sp"
+                    android:hint="ไอดีผู้ใช้"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:text="ส่งให้เพื่อน"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/bt_send"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <Button
+                android:text="คิวอาร์โค้ด"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bt_QR"
+                android:textSize="22sp"
+                android:background="#286075"
+                android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp">
+
+                    <Button
+                        android:text="บันทึกการแก้ไข"
+                        android:layout_width="231dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bt_svae_profile"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:textSize="22sp"
+                        android:background="#347D00"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

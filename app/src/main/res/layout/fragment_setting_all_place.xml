@@ -1,0 +1,146 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="biz.markgo.senior_project.tracksharelocations.PlaceStatus.Nav_Fragment.PlaceSharing.SettingStatus.SettingAllPlaceFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:id="@+id/CV_exit"
+        android:layout_height="121dp"
+        app:cardBackgroundColor="@color/place_status_my_head">
+
+    <LinearLayout
+        android:descendantFocusability="blocksDescendants"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:weightSum="5"
+        android:gravity="center_vertical|center_horizontal"
+        android:elevation="24dp">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="4.85">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp">
+
+                    <ImageView
+                        android:layout_width="55dp"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/makker_location"
+                        android:id="@+id/imageView4" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="ชื่อสถานที่"
+                        android:id="@+id/tv_name_placeAll"
+                        android:layout_weight="4.03"
+                        android:gravity="center_vertical"
+                        android:textSize="22sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_above="@+id/imageView2"
+                        android:layout_alignLeft="@+id/imageView2"
+                        android:layout_alignStart="@+id/imageView2"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="10dp" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:text="ที่อยู่"
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:id="@+id/tv_addra"
+                    android:paddingLeft="10dp"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="75dp"
+            android:layout_height="128dp"
+            android:gravity="center_horizontal">
+
+            <!--<Button-->
+                <!--android:layout_width="56dp"-->
+                <!--android:layout_height="32dp"-->
+                <!--android:id="@+id/bt_back_place"-->
+                <!--android:background="?android:attr/homeAsUpIndicator"-->
+                <!--android:layout_gravity="center_vertical|center_horizontal" />-->
+
+            <Button
+                android:layout_width="59dp"
+                android:id="@+id/bt_edit_placeAll"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:background="@drawable/map_edit"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:layout_marginTop="120dp"
+        android:background="@color/place_autocomplete_prediction_secondary_text">
+
+        <TextView
+            android:text="การตั้งค่าเงื่อนไขของฉัน"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textView16"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/bt_settingNewStatus"
+            android:textSize="18sp"
+            android:background="@drawable/addsetting2"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="5dp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listView_settingplace"
+        android:layout_marginTop="179dp"
+        tools:listitem="@layout/row_allplace"/>
+
+</FrameLayout>

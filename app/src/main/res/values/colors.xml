@@ -3,4 +3,56 @@
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#ff0057</color>
+    <color name="red">#F6402C</color>
+    <color name="pink">#eb1460</color>
+    <color name="purple">#9C1AB1</color>
+    <color name="deep_purple">#6633B9</color>
+    <color name="indigo">#3D4DB7</color>
+    <color name="blue">#1093f5</color>
+    <color name="light_blue">#00A6F6</color>
+    <color name="cyan">#00BBD5</color>
+    <color name="teal">#009687</color>
+    <color name="green">#46af4a</color>
+    <color name="light_green">#88C440</color>
+    <color name="lime">#CCDD1E</color>
+    <color name="yellow">#FFEC16</color>
+    <color name="amber">#ffc100</color>
+    <color name="orange">#FF9800</color>
+    <color name="deep_orange">#FF5505</color>
+    <color name="brown">#7A5547</color>
+    <color name="grey">#9D9D9D</color>
+    <color name="blue_grey">#5E7C8B</color>
+    <color name="White">#ffffff</color>
+
+    <!--404040 595F66 6099BF 919394 BBBCB9-->
+    <!--place status-->
+    <color name="app_bar_place_status_background">#009900</color>
+    <color name="app_bar_place_status_textColor">#ffffff</color>
+
+    <color name="nav_header_place_status_background">#009900</color>
+    <color name="nav_header_place_status_textColor">#ffffff</color>
+
+    <color name="place_status_my_head">#404040</color>
+
+
+    <!--place traking-->
+    <color name="app_bar_place_traking_background">#cc0066</color>
+    <color name="app_bar_place_traking_textColor">#ffffff</color>
+
+    <color name="nav_header_place_traking_background">#CC0066</color>
+    <color name="nav_header_place_traking_textColor">#ffffff</color>
+
+    <color name="place_traking_my_head">#404040</color>
+
+    <color name="background_place">#FFFFFF</color>
+    <color name="Cradview">#E8DDD9</color>
+    <color name="text_placelist">#343440</color>
+
+    <color name="hade_ber">#1695A3</color>
+
+
+
+
+
+
 </resources>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_config_account"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="biz.markgo.senior_project.tracksharelocations.Config.ConfigAccountActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/hade_ber"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar_config_account"
+        app:titleTextColor="@android:color/white" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar_config_account">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/CV_email"
+            android:layout_marginTop="2dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                >
+
+                <TextView
+                    android:text="อีเมล       : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_email1"
+                    android:gravity="center_vertical"
+                    android:textSize="22sp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_email"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black"
+                    android:text="อีเมล" />
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_id"
+            android:layout_marginTop="2dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="ไอดีผู้ใช้  : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_id1"
+                    android:gravity="center_vertical"
+                    android:textSize="22sp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_id"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black"
+                    android:text="ไอดี" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_QR"
+            android:layout_marginTop="2dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="คิวอาร์โค้ด"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_qr"
+                    android:gravity="center_vertical"
+                    android:textSize="22sp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <!--<ImageView-->
+                    <!--android:layout_width="73dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--app:srcCompat="@drawable/qrc"-->
+                    <!--android:id="@+id/imageView5" />-->
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_Delete"
+            android:layout_marginTop="2dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_delete"
+                    android:gravity="center_vertical"
+                    android:textSize="22sp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="0.02"
+                    android:text="ลบบัญชี" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

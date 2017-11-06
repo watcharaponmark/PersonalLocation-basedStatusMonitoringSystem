@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_sharering"
+            android:icon="@drawable/ic_add_location_black_24dp"
+            android:title="สถานที่ของฉัน" />
+        <!--<item-->
+            <!--android:id="@+id/nav_home"-->
+            <!--android:icon="@drawable/ic_public_black_24dp"-->
+            <!--android:title="แผนที่" />-->
+
+        <item
+            android:id="@+id/nav_share_history"
+            android:icon="@drawable/ic_history_black_24dp"
+            android:title="ประวัติการแบ่งปันสถานที่" />
+
+        <!--<item
+            android:id="@+id/nav_PlaceToTacking"
+            android:icon="@drawable/switch_mode"
+            android:title="สลับไปใช้โหมดติดตามสถานที่" />-->
+
+
+    <!--<item android:title="ประวัติการใช้งาน">-->
+        <!--<menu>-->
+            <!--<group android:checkableBehavior="single">-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share_history"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="การแบ่งปันสถานที่" />-->
+
+            <!--</group>-->
+        <!--</menu>-->
+
+    <!--</item>-->
+        <item android:title="โหมดการใช้งาน">
+        <menu>
+        <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_PlaceToTacking"
+                android:icon="@drawable/switch_mode"
+                android:title="สลับไปใช้โหมดติดตามบุคคล" />
+
+        </group>
+        </menu>
+
+        </item>
+
+        <item android:title="การตั้งค่าและการช่วยเหลือ">
+        <menu>
+            <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_config"
+                android:icon="@drawable/ic_setting_light"
+                android:title="การตั้งค่า" />
+            <item
+                android:id="@+id/nav_QA"
+                android:icon="@drawable/ic_help_black_24dp"
+                android:title="คำถามที่พบบ่อย" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_power_settings_new_black_24dp"
+                android:title="ออกจากระบบ" />
+            </group>
+        </menu>
+        </item>
+    </group>
+
+
+</menu>

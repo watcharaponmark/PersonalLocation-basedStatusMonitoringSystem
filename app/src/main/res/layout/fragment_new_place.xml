@@ -1,8 +1,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="biz.markgo.senior_project.tracksharelocations.Nav_Fragment.NewPlaceFragment">
+    tools:context=".PlaceStatus.Nav_Fragment.PlaceSharing.NewPlaceFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -14,103 +15,136 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:layout_weight="4.90"
-            android:weightSum="6"
-            android:background="#337885">
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:id="@+id/CV_name"
+                android:layout_height="match_parent"
+                android:layout_weight="4.08"
+                android:layout_marginBottom="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginStart="1dp">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2.76">
+                android:layout_height="match_parent">
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/et_PlaceName"
                     android:hint=" ชื่อสถานที่"
                     android:layout_marginTop="5dp"
-                    android:layout_height="49dp"
-                    android:layout_weight="1.07"
-                    android:paddingLeft="10dp"
-                    android:textColor="#FFFFFF" />
-
+                    android:layout_height="match_parent"
+                    android:textColor="#000000" />
             </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-            <LinearLayout
-                android:orientation="horizontal"
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
+                android:id="@+id/CV_add"
                 android:layout_height="match_parent"
-                android:weightSum="10"
-                android:layout_weight="3.20">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/tv_address"
-                    android:layout_weight="9.73"
-                    android:hint="  ที่อยู่"
-                    android:textSize="18sp"
-                    android:gravity="center_vertical"
-                    android:textColor="#FFFFFF"
-                    android:paddingLeft="10dp" />
-
-                <Button
-                    android:layout_width="39dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/bt_re"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/reset1"
-                    android:layout_weight="0.21"
-                    android:padding="5dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="443dp"
-            android:layout_weight="11.30">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="49dp"
-                android:background="#F2C9DC">
-
-                <TextView
-                    android:text="รัศมี :"
-                    android:layout_width="61dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView3"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:layout_gravity="center_vertical|center_horizontal"
-                    android:textSize="20sp"
-                    android:textColor="@android:color/background_dark" />
-
-                <Spinner
+                android:layout_weight="4.08"
+                android:layout_marginBottom="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginStart="1dp"
+                app:cardBackgroundColor="#595C66">
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/spinner_radius" />
-            </LinearLayout>
+                    android:layout_height="54dp"
+                    android:weightSum="10">
 
-            <fragment
-                android:id="@+id/map"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                class="com.google.android.gms.maps.SupportMapFragment" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tv_address"
+                        android:layout_weight="9.73"
+                        android:hint="  ที่อยู่"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
+                        android:textColor="#FFFFFF"
+                        android:paddingLeft="10dp" />
+
+
+                    <Button
+                        android:layout_height="match_parent"
+                        android:id="@+id/bt_search_add"
+                        android:background="@drawable/search2"
+                        android:layout_margin="4dp"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_width="48dp" />
+
+                        <Button
+                            android:layout_height="match_parent"
+                            android:id="@+id/bt_re"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/replace1"
+                            android:layout_weight="0.21"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_width="50dp" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:id="@+id/CV_radi"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="8.50"-->
+                <!--android:layout_margin="1dp"-->
+                <!--app:cardBackgroundColor="#BBBCB9">-->
+
+            <!--<LinearLayout-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="49dp">-->
+
+                <!--<TextView-->
+                    <!--android:text="รัศมี :"-->
+                    <!--android:layout_width="61dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/textView3"-->
+                    <!--android:gravity="center_vertical|center_horizontal"-->
+                    <!--android:layout_gravity="center_vertical|center_horizontal"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textColor="@android:color/background_dark" />-->
+
+                <!--<Spinner-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:id="@+id/spinner_radius" />-->
+            <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
+
         </LinearLayout>
+
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_weight="15.93" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F2C9DC">
+            android:background="@color/place_status_my_head">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -159,7 +193,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </FrameLayout>

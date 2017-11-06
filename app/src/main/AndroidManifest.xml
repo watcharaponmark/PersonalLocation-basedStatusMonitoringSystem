@@ -3,15 +3,31 @@
     package="biz.markgo.senior_project.tracksharelocations">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
+
+
+
+    <!-- Tell the system this app requires OpenGL ES 2.0. -->
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
+
+    <!-- Tell the system this app requires OpenGL ES 3.0. -->
+    <!--<uses-feature-->
+        <!--android:glEsVersion="0x00030000"-->
+        <!--android:required="true" />-->
+
+    <!-- Tell the system this app requires OpenGL ES 3.1. -->
+    <!--<uses-feature android:glEsVersion="0x00030001" -->
+        <!--android:required="true" />-->
 
     <application
         android:allowBackup="true"
@@ -19,16 +35,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".StartActivity">
+
+        <activity android:name=".Begin.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".Login.ChooseLoginActivity" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".PlaceStatus.PlaceStatusActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -41,15 +59,75 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
         <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="@string/Map_api_key" />
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+         <!--Goolge Maps API Key-->
+         <!--<meta-data-->
+         <!--android:name="com.google.android.maps.v2.API_KEY"-->
+         <!--android:value="@string/Map_api_key" />-->
+
+
+        <!-- Google Places API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/Place_api_key" />
+
         <activity android:name=".Login.DetailRegisterActivity" />
-        <activity android:name=".Search_Address.AddressSearchActivity" />
-        <activity android:name=".Place.DetailPlaceActivity"></activity>
+        <activity android:name=".Begin.SelectModeActivity" />
+        <activity
+            android:name=".Traking.TrakingActivity"
+            android:label="@string/title_activity_traking"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Config.Profile.ConfigProfileActivity" />
+        <activity android:name=".Config.ConfigAccountActivity" />
+        <activity android:name=".Config.ConfigNotiActivity" />
+        <activity android:name=".Config.Profile.QRCodeActivity" />
+        <activity android:name=".Traking.Nav_Fagment.PlaceTracking.ScanQRActivity" />
+
+        <service android:name=".ServiceBackground.LocationMonitorService" />
+        <service android:name=".ServiceBackground.MonitorService" />
+
+        <activity android:name=".FirebaseNoti.Main2Activity"/>
+
+        <service
+            android:name=".FirebaseNoti.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".FirebaseNoti.MyFirebaseInstanceIDService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+
+        <!--<service-->
+            <!--android:name=".FirebaseNoti.MyJobService"-->
+            <!--android:exported="false">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />-->
+            <!--</intent-filter>-->
+        <!--</service>-->
+
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/logo" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+
+
     </application>
 
 </manifest>

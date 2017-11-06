@@ -1,0 +1,736 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="biz.markgo.senior_project.tracksharelocations.PlaceStatus.Nav_Fragment.PlaceSharing.SettingStatus.SttingNewStatusFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:weightSum="5"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@color/place_status_my_head"
+            android:elevation="24dp">
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bt_back_place_setting"
+                android:background="?android:attr/homeAsUpIndicator" />
+
+
+            <TextView
+                android:layout_width="289dp"
+                android:layout_height="33dp"
+                android:text="ตั้งค่าเงื่อนไข"
+                android:layout_weight="5"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="59dp"
+            android:background="#E1E5E5">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:text="ชื่อเงื่อนไข"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/textView6"
+                            android:textSize="20sp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:textColor="@android:color/black"
+                            android:layout_marginLeft="10dp" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="textPersonName"
+                            android:ems="10"
+                            android:id="@+id/et_nameNewsetting"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:textColor="@android:color/black"
+                            android:hint="กรอกชื่อเงื่อนไข" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:id="@+id/CV_radius"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.30"
+                        android:layout_marginBottom="1dp">
+
+                        <LinearLayout
+                            android:id="@+id/layout_radius"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <TextView
+                                android:text="รัศมี : "
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/tv_radius"
+                                android:textSize="20sp"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="10dp" />
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="right">
+
+
+                                <TextView
+                                    android:text="รัศมี"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/tv_radius2"
+                                    android:gravity="right|center_vertical"
+                                    android:textSize="19sp"
+                                    android:paddingRight="10dp"
+                                    android:layout_gravity="right|center_vertical"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:text="  >"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/textView25"
+                                    android:gravity="right|center_vertical"
+                                    android:textSize="19sp"
+                                    android:paddingRight="10dp"
+                                    android:textColor="@android:color/black" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <!--<LinearLayout-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="0.48">-->
+
+                        <!--<TextView-->
+                            <!--android:text="ตั้งค่าวันเวลา"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:id="@+id/textView15"-->
+                            <!--android:paddingLeft="5dp"-->
+                            <!--android:textSize="16sp" />-->
+                    <!--</LinearLayout>-->
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:id="@+id/CV_day"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.30"
+                        android:layout_marginBottom="1dp">
+
+                        <LinearLayout
+                            android:id="@+id/layout_day"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <TextView
+                                android:text="วัน : "
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/tv_day"
+                                android:textSize="20sp"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="10dp" />
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="right">
+
+                                <TextView
+                                    android:text="ทุกวัน"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/tv_dayall"
+                                    android:gravity="right|center_vertical"
+                                    android:paddingRight="10dp"
+                                    android:textSize="19sp"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:text="  >"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/textView23"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:paddingRight="10dp"
+                                    android:textSize="19sp"
+                                    android:textColor="@android:color/black" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+
+                    <!--<RadioGroup-->
+                        <!--android:id="@+id/radioGroup"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:checkedButton="@+id/rb_time"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<RadioButton-->
+                            <!--android:text="ช่วงเวลาออนไลน์"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:id="@+id/rb_time" />-->
+
+                        <!--<RadioButton-->
+                            <!--android:text="ระยะเวลาออนไลน์"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:id="@+id/rb_Duration"-->
+                            <!--android:layout_marginLeft="5dp" />-->
+
+                    <!--</RadioGroup>-->
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:id="@+id/CV_date_Newsetting"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp">
+
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:weightSum="1"
+                                android:layout_height="60dp">
+
+                                <TextView
+                                    android:text="ช่วงเวลา : "
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/textView9"
+                                    android:textSize="20sp"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:textColor="@android:color/black"
+                                    android:layout_marginLeft="10dp" />
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="right">
+
+                                    <TextView
+                                        android:text="ตลอดเวลา"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:id="@+id/tv_Timeall"
+                                        android:gravity="right|center_vertical"
+                                        android:paddingRight="10dp"
+                                        android:textSize="19sp"
+                                        android:textColor="@android:color/black" />
+
+                                    <TextView
+                                        android:text="  >"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:id="@+id/textView24"
+                                        android:gravity="center_vertical|center_horizontal"
+                                        android:paddingRight="10dp"
+                                        android:textSize="19sp"
+                                        android:textColor="@android:color/black" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/app_bar_place_status_background">
+
+                        <TextView
+                            android:text="ออนไลน์"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView11"
+                            android:textSize="16sp"
+                            android:paddingLeft="5dp"
+                            android:textColor="@android:color/black"/>
+                    </LinearLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.48">
+
+                        <CheckBox
+                            android:text="ไม่ต้องมาสถานที่จริง"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:textSize="20sp"
+                            android:id="@+id/cb_realplace"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_gravity="center_vertical|center_horizontal" />
+
+                    </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:id="@+id/CV_on"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="15dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:weightSum="1"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:text="การทำงาน : "
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/textView17"
+                            android:textSize="20sp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:textColor="@android:color/black"
+                            android:layout_marginLeft="10dp" />
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/spinner_on"
+                            android:gravity="center_vertical|start" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/amber">
+
+                        <TextView
+                            android:text="ออฟไลน์"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView12"
+                            android:textSize="16sp"
+                            android:paddingLeft="5dp"
+                            android:textColor="@android:color/black"/>
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:id="@+id/CV_modeoff"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <RadioGroup
+                                    android:id="@+id/radioGroup"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:checkedButton="@+id/rb_time_range"
+                                    android:orientation="vertical"
+                                    android:layout_marginLeft="5dp">
+
+                                <RadioButton
+                                    android:text="หมดช่วงวันเวลา"
+                                    android:layout_width="match_parent"
+                                    android:id="@+id/rb_time_range"
+                                    android:layout_weight="1"
+                                    android:textSize="20sp"
+                                    android:layout_gravity="center_vertical|center_horizontal"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="10dp"
+                                    android:paddingTop="10dp" />
+
+                                <RadioButton
+                                    android:text="หมดระยะเวลา"
+                                    android:layout_width="match_parent"
+                                    android:id="@+id/rb_time_out"
+                                    android:textSize="20sp"
+                                    android:layout_weight="1"
+                                    android:layout_gravity="center_vertical|center_horizontal"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="10dp"
+                                    android:paddingTop="10dp" />
+
+                                <RadioButton
+                                    android:text="ถึงเวลา"
+                                    android:layout_width="match_parent"
+                                    android:id="@+id/rb_time_end"
+                                    android:textSize="20sp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="10dp"
+                                    android:paddingTop="10dp" />
+
+                                </RadioGroup>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/textView28"
+                                        android:textSize="19sp"
+                                        android:gravity="right|center_vertical"
+                                        android:paddingRight="10dp"
+                                        android:layout_weight="1" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:id="@+id/textView33"
+                                        android:gravity="center_vertical|center_horizontal"
+                                        android:paddingRight="10dp"
+                                        android:textSize="19sp"
+                                        android:textColor="@android:color/black" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:id="@+id/layout_time_out"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        android:text=""
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="19sp"
+                                        android:id="@+id/tv_time_out"
+                                        android:gravity="right|center_vertical"
+                                        android:paddingRight="10dp"
+                                        android:layout_weight="1"
+                                        android:textColor="@android:color/black"/>
+
+                                    <TextView
+                                        android:text="  >"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:id="@+id/tv_time_out2"
+                                        android:gravity="center_vertical|center_horizontal"
+                                        android:paddingRight="10dp"
+                                        android:textSize="19sp"
+                                        android:textColor="@android:color/black" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:id="@+id/layout_timeend"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        android:text=""
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/tv_timeend"
+                                        android:textSize="19sp"
+                                        android:gravity="right|center_vertical"
+                                        android:paddingRight="10dp"
+                                        android:layout_weight="1"
+                                        android:textColor="@android:color/black"/>
+
+                                    <TextView
+                                        android:text="  >"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:id="@+id/tv_timeend2"
+                                        android:gravity="center_vertical|center_horizontal"
+                                        android:paddingRight="10dp"
+                                        android:textSize="19sp"
+                                        android:textColor="@android:color/black" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.48">
+
+                        <CheckBox
+                            android:text="ออกจากสถานที่แต่ออนไลน์"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:textSize="20sp"
+                            android:id="@+id/cb_out_place_online"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="5dp"
+                            android:layout_marginLeft="5dp" />
+
+                    </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:id="@+id/CV_off"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="20dp">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:weightSum="1"
+                            android:layout_height="60dp">
+
+                            <TextView
+                                android:text="การทำงาน : "
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/textView18"
+                                android:textSize="20sp"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="10dp" />
+
+                            <Spinner
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/spinner_off"
+                                android:gravity="center_vertical|start" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.48"
+                        android:background="@color/pink">
+
+                        <TextView
+                            android:text="ตั้งค่าสถานะการแบ่งปัน"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView19"
+                            android:paddingLeft="5dp"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/black"/>
+                    </LinearLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:id="@+id/CV_share"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:weightSum="1"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:text="สถานะการแบ่งปัน : "
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/textView13"
+                            android:textSize="20sp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:textColor="@android:color/black"
+                            android:layout_marginLeft="10dp" />
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/spinner_status_Newsetting"
+                            android:padding="10dp"
+                            android:gravity="center_vertical|start" />
+
+                    </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                        android:id="@+id/Layout_Secert"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:weightSum="1"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="1dp">
+
+                        <TextView
+                            android:text="รหัสลับเฉพาะ : "
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/textView14"
+                            android:textSize="20sp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:textColor="@android:color/black"
+                            android:layout_marginLeft="10dp" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="textPersonName"
+                            android:ems="10"
+                            android:id="@+id/et_code_Newsetting"
+                            android:layout_weight="1"
+                            android:hint="รหัสลับพเฉพาะ" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="20dp">
+
+                        <Button
+                            android:text="บันทึก"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/bt_ok_Newsetting"
+                            android:textSize="20sp"
+                            android:background="#347D00" />
+                    </LinearLayout>
+
+                    <!--<LinearLayout-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:weightSum="1"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:layout_height="60dp">-->
+
+                        <!--<TextView-->
+                            <!--android:text="ระยะเวลา : "-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:id="@+id/textView8"-->
+                            <!--android:textSize="20sp"-->
+                            <!--android:gravity="center_vertical|center_horizontal"-->
+                            <!--android:textColor="@android:color/black"-->
+                            <!--android:layout_marginLeft="10dp" />-->
+
+                        <!--<Spinner-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:id="@+id/spinner_time_Newsetting"-->
+
+                            <!--android:gravity="center_vertical|start" />-->
+
+                    <!--</LinearLayout>-->
+
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</FrameLayout>

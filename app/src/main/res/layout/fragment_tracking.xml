@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="biz.markgo.senior_project.tracksharelocations.Nav_Fragment.TrackingFragment">
+    tools:context=".Traking.Nav_Fagment.PlaceTracking.TrackingFragment">
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,38 +13,43 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:weightSum="1"
+        android:weightSum="5"
         android:gravity="center_vertical|center_horizontal"
-        android:background="#034E57"
+        android:background="@color/place_traking_my_head"
         android:elevation="24dp">
+
+        <!--<Button-->
+            <!--android:layout_width="59dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/bt_back_tracking"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="?android:attr/homeAsUpIndicator" />-->
+
 
         <TextView
             android:layout_width="289dp"
             android:layout_height="33dp"
-            android:text="การติดตาม่ของคุณ"
-            android:layout_weight="0.47"
+            android:text="การติดตามของคุณ"
+            android:layout_weight="3"
             android:gravity="center_vertical|center_horizontal"
             android:textSize="20sp"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
         <Button
-            android:text="เพิ่ม"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:id="@+id/bt_newtracking"
             android:textSize="20sp"
             android:textColor="#000000"
-            android:background="#F2CD50" />
+            android:background="@drawable/addsetting2"
+            android:layout_width="45dp" />
     </LinearLayout>
 
     <ListView
         android:id="@+id/listView_tracking"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/row_place"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        tools:listitem="@layout/row_trackingall">
     </ListView>
 
     </LinearLayout>

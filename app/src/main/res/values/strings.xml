@@ -1,11 +1,15 @@
 <resources>
-    <string name="app_name">TrackShareLocations</string>
+    <string name="app_name">Tracksharelocations</string>
     <string name="title_activity_home">HomeActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_switch_mode_tracking">สลับไปใช้โหมดกำหนดสถานะ</string>
+    <string name="action_settings_tracking">หน้าหลัก</string>
+    <string name="action_switch_mode_PlaceStatus">สลับไปใช้โหมดติดตามบุคคล</string>
+    <string name="action_settings_PlaceStatus">หน้าหลัก</string>
+    <string name="action_select_mode">ออกจากระบบ</string>
 
 
     <string name="loding">loding</string>
@@ -14,9 +18,22 @@
     <string name="btn_get_location">GET MY LOCATION</string>
     <string name="btn_start_location_updates">START LOCATION UPDATES</string>
     <string name="btn_stop_location_updates">STOP LOCATION UPDATES</string>
-    <string name="Map_api_key">AIzaSyAMFNqzykZa7u38Aad73GEbTLKtgD0Vebo</string>
+    <string name="Map_api_key">AIzaSyA5K8UY35p0G3mCRDzE0agXfMaKBVT7UPY</string>
     <string name="facebook_app_id">430026434012016</string>
+    <string name="Place_api_key">AIzaSyA5K8UY35p0G3mCRDzE0agXfMaKBVT7UPY</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_placestatus">PlacestatusActivity</string>
+    <string name="title_activity_traking">TrakingActivity</string>
+
+
+    <string name="text_QRCode">โปรดให้อีกฝ่ายใช้ตัวอ่านโค้ดสแกนคิวอาร์โค้ดนี้เพื่อติดตามสถานที่ต่าง ๆ ของคุณ</string>
+    <string name="text_QRCode_scan">ใช้กล้องสแกนคิวอาร์โค้ด</string>
+
+    <string name="text_delete_account">นี่จะเป็นการลบบัญชีทั้งหมดของคุณ\nและนำสถานที่ของคุณออกทั้งหมด"</string>
+    <string name="end">สิ้นสุด</string>
+
+
 </resources>

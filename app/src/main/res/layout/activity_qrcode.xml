@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_qrcode"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E1E5E5"
+    tools:context="biz.markgo.senior_project.tracksharelocations.Config.Profile.QRCodeActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_bar_place_status_background"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar_config_QRCodet"
+        app:titleTextColor="@android:color/white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:weightSum="1">
+
+            <ImageView
+                app:srcCompat="@drawable/qrc"
+                android:id="@+id/im_qrc"
+                android:layout_height="198dp"
+                android:layout_width="match_parent"
+                android:layout_weight="0.29" />
+
+            <TextView
+                android:text="@string/text_QRCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_weight="0.16"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+
+        <Button
+            android:text="ส่งคิวอาร์โค้ด"
+            android:layout_width="match_parent"
+            android:id="@+id/bt_save_QR"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="22sp"
+            android:layout_height="wrap_content"
+            android:background="#347D00"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

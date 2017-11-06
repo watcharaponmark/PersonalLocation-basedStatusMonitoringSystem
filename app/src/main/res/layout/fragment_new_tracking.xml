@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="biz.markgo.senior_project.tracksharelocations.Nav_Fragment.NewTrackingFragment">
+    tools:context=".Traking.Nav_Fagment.PlaceTracking.NewTrackingFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -11,74 +11,141 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:background="#E1E5E5">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <TabHost
+            android:id="@+id/tabhost"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="#337885">
+            android:layout_height="match_parent">
 
-            <EditText
-                android:layout_width="351dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editText"
-                android:hint="ID ของคนที่ต้องการติดตาม"
-                android:textSize="20sp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF" />
+                android:orientation="vertical">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/button2"
-                android:background="@drawable/places_ic_search"
-                android:padding="30dp" />
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        </LinearLayout>
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="431dp"
-            android:weightSum="1"
-            android:layout_weight="0.26"
-            android:layout_marginTop="40dp"
-            android:gravity="center_vertical|center_horizontal">
+                    <LinearLayout
+                        android:id="@+id/tab1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"
-                android:id="@+id/imageView3" />
+                        <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:id="@+id/CV_sh"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#E0CAAE"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="1dp">
 
-            <TextView
-                android:text="ชื่อผู้ใช้"
-                android:layout_width="match_parent"
-                android:layout_height="77dp"
-                android:id="@+id/tv_name_tracking"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:gravity="center_vertical|center_horizontal"
-                android:textSize="30sp" />
+                        <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:weightSum="1"
+                        android:layout_height="66dp">
 
-            <Button
-                android:text="ติดตาม"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/bt_trackingfande"
-                android:layout_weight="0.25"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_marginLeft="100dp"
-                android:layout_marginRight="100dp"
-                android:textStyle="normal|bold"
-                android:textSize="20sp"
-                android:background="#46C04D" />
-        </LinearLayout>
+                        <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/et_tracking_searching"
+                        android:hint="ID ของคนที่ต้องการติดตาม"
+                        android:textColor="#000000"
+                        android:textColorHint="#FFFFFF"
+                            android:layout_weight="1.15"
+                        android:textSize="22sp"
+                        android:padding="10dp" />
+
+                        <Button
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/bt_tarcking_search"
+                        android:background="@drawable/ic_search_black_24dp"
+                        android:padding="30dp" />
+
+                        </LinearLayout>
+                        </android.support.v7.widget.CardView>
+
+                        <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/new_tracking">
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/tab2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:id="@+id/CV_qr"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="1dp"
+                            app:cardBackgroundColor="#E0CAAE">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:background="#E0CAAE"
+                                android:layout_height="66dp">
+
+                                <Button
+                                    android:text="สแกน คิวอาร์โค้ด"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/bt_scan_QR"
+                                    android:layout_weight="0.96"
+                                    android:textSize="22sp"
+                                    android:textColor="@android:color/black"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp" />
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/search_qr">
+
+                            <TextView
+                                android:id="@+id/result"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="25sp"
+                                android:padding="5dp"
+                                android:gravity="center_horizontal"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
 
     </LinearLayout>
 </FrameLayout>

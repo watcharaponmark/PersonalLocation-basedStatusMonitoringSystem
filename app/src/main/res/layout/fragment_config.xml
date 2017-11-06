@@ -1,9 +1,141 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="biz.markgo.senior_project.tracksharelocations.Nav_Fragment.ConfigFragment">
+    tools:context=".Config.ConfigFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E1E5E5">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:id="@+id/CV_profile"
+            android:layout_height="126dp">
+
+            <LinearLayout
+                android:id="@+id/layout1_seting"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="124dp"
+               >
+
+                <ImageView
+                    android:layout_width="126dp"
+                    android:layout_height="142dp"
+                    app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"
+                    android:id="@+id/im_profile_setting"
+                    android:layout_gravity="center_vertical" />
+
+                <LinearLayout
+                    android:id="@+id/layout2_seting"
+                    android:orientation="vertical"
+                    android:layout_width="285dp"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:text="เข้าสู่ระบบด้วย "
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:id="@+id/tv_status_setting"
+                        android:gravity="center_vertical"
+                        android:textSize="20sp"
+                        android:textStyle="normal|bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:text="name"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:id="@+id/tv_name_setting"
+                        android:gravity="center_vertical"
+                        android:textSize="20sp"
+                        android:textStyle="normal|bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:text="email"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:id="@+id/tv_email_setting"
+                        android:gravity="center_vertical"
+                        android:textSize="20sp"
+                        android:textStyle="normal|bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_noti"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:text="การแจ้งเตือน"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_noti"
+                android:gravity="center_vertical"
+                android:textSize="22sp"
+                android:paddingLeft="10dp"
+                android:textColor="@android:color/black" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_acount"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:text="บัญชี"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_acount"
+                android:gravity="center_vertical"
+                android:textSize="22sp"
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:id="@+id/CV_exit"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:text="ออกจากระบบ"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_exit"
+                android:gravity="center_vertical"
+                android:textSize="22sp"
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
 
 </FrameLayout>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:gravity="center_vertical|center_horizontal"
+    app:layout_gravity="center_vertical|center_horizontal"
+    android:background="@color/cast_intro_overlay_background_color">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal">
+
+                <TextView
+                    android:text="รัศมี"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_shows_radius"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/place_status_my_head">>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_weight="1"
+                    android:background="@color/amber">
+
+                        <TextView
+                            android:text="5 ม."
+                            android:layout_width="43dp"
+                            android:layout_height="match_parent"
+                            android:id="@+id/textView3"
+                            android:gravity="center_vertical|center_horizontal" />
+
+                        <SeekBar
+                            android:layout_width="317dp"
+                            android:layout_height="match_parent"
+                            android:id="@+id/seekBar_radius"
+                            android:background="@color/amber"
+                            android:max="195" />
+
+                        <TextView
+                            android:text="200 ม."
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/textView22"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:layout_marginRight="10dp" />
+
+                        <!--<Button-->
+                            <!--android:text="50 เมตร"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:id="@+id/bt_50"-->
+                            <!--android:layout_weight="1" />-->
+
+                        <!--<Button-->
+                            <!--android:text="100 เมตร"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:id="@+id/bt_100"-->
+                            <!--android:layout_weight="1" />-->
+
+                        <!--<Button-->
+                            <!--android:text="150 เมตร"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:id="@+id/bt_150"-->
+                            <!--android:layout_weight="1" />-->
+
+                        <!--<Button-->
+                            <!--android:text="200 เมตร"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:id="@+id/bt_200"-->
+                            <!--android:layout_weight="1" />-->
+                </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.21">
+
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_height="350dp">
+
+                </com.google.android.gms.maps.MapView>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            app:cardBackgroundColor="@color/place_status_my_head">
+
+                <Button
+                    android:text="ตกลง"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bt_ok"
+                    android:layout_gravity="right|center_vertical" />
+        </android.support.v7.widget.CardView>
+
+</LinearLayout>

@@ -1,7 +1,9 @@
 {
   "project_info": {
     "project_number": "434550361523",
-    "project_id": "tracksharelocations"
+    "firebase_url": "https://tracksharelocations.firebaseio.com",
+    "project_id": "tracksharelocations",
+    "storage_bucket": "tracksharelocations.appspot.com"
   },
   "client": [
     {
@@ -12,6 +14,18 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "434550361523-aurovso9uldsn86a3v4uql66tcevdf0b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "biz.markgo.senior_project.tracksharelocations",
+            "certificate_hash": "b23767ab9d86c67ce9caee40f868636539929bec"
+          }
+        },
+        {
+          "client_id": "434550361523-0sf7s3c76ts6eqok0itcrii1303s1hg0.apps.googleusercontent.com",
+          "client_type": 3
+        },
         {
           "client_id": "434550361523-jgaqlpidqecjg7pa9i9e245n3uacifg2.apps.googleusercontent.com",
           "client_type": 1,
@@ -35,11 +49,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "434550361523-0sf7s3c76ts6eqok0itcrii1303s1hg0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

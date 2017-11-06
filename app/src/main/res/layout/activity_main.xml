@@ -8,6 +8,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="biz.markgo.senior_project.tracksharelocations.Nav_Fragment.DetailPlace.MainActivity">
+    tools:context=".PlaceStatus.Nav_Fragment.DetailPlace.MainActivity">
 
 </RelativeLayout>
